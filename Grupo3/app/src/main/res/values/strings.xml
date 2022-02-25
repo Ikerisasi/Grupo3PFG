@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Grupo3</string>
+
+    <string name="btnProductos">PRODUCTOS</string>
+    <string name="btnTiendas">TIENDAS</string>
+    <string name="btnTenderos">TENDEROS</string>
+
 </resources>
