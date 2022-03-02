@@ -7,8 +7,11 @@ public class Producto {
     private String descripcion;
     private double precio;
 
-    public Producto() {
-
+    public Producto(int id, String nombre, String descripcion, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
     public int getId() {
@@ -39,4 +42,8 @@ public class Producto {
         this.precio = precio;
     }
 
+    @Override
+    public String toString() {
+        return id + ": " + nombre + " | " + precio + "€";
+    }
 }

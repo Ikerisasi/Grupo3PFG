@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnProductos = findViewById(R.id.btnProductos);
         Button btnTiendas = findViewById(R.id.btnTiendas);
         Button btnTenderos = findViewById(R.id.btnTenderos);
+
 
         btnProductos.setOnClickListener( (v) -> {
             Intent intent = new Intent(this, ProductosActivity.class);

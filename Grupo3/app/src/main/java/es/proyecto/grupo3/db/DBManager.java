@@ -6,14 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 import es.proyecto.grupo3.modelo.Producto;
-import es.proyecto.grupo3.modelo.Tienda;
 import es.proyecto.grupo3.modelo.Tendero;
+import es.proyecto.grupo3.modelo.Tienda;
 
 public class DBManager extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "Proyecto.db";
     private static final int DB_VERSION = 1;
+    private final Context context;
 
     /* ********************************************************************** */
 
@@ -77,8 +80,6 @@ public class DBManager extends SQLiteOpenHelper {
 
     /* ********************************************************************** */
 
-    private final Context context;
-
     public DBManager(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
@@ -93,7 +94,14 @@ public class DBManager extends SQLiteOpenHelper {
 
         // TABLA PRODUCTO
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCTO);
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_PRODUCTO + " VALUES (null, 'Portátil gaming - Asus ROG G713IE-HX011', 'portatil gaming', 1299.99), (null, 'JEANS STRAIGHT FIT','pantalones vaqueros', 29.95)");
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE_PRODUCTO, "Asus ROG G713IE-HX011");
+        values.put(DESCRIPCION_PRODUCTO, "Portatil gaming");
+        values.put(PRECIO_PRODUCTO, "1299.99");
+
+        sqLiteDatabase.insert(TABLE_PRODUCTO, null, values);
+
+        //sqLiteDatabase.execSQL("INSERT INTO " + TABLE_PRODUCTO + " VALUES (null, 'Portátil gaming - Asus ROG G713IE-HX011', 'portatil gaming', 1299.99), (null, 'JEANS STRAIGHT FIT','pantalones vaqueros', 29.95)");
 
         // TABLA TIENDA
         sqLiteDatabase.execSQL(CREATE_TABLE_TIENDA);
@@ -106,6 +114,48 @@ public class DBManager extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
         onCreate(sqLiteDatabase);
+    }
+
+    //Mira los productos
+
+    public ArrayList<String> selectProductos() {
+
+        String query = "SELECT * FROM " + TABLE_PRODUCTO;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        Producto productos;
+        ArrayList<String> response = new ArrayList<>();
+
+        while(cursor.moveToNext()){
+            productos = new Producto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getDouble(3));
+            response.add(productos.toString());
+        }
+
+        return response;
+    }
+
+    //Mira las tiendas
+
+    public Tienda selectTiendas() {
+        Tienda tiendas = new Tienda();
+
+        String query = "SELECT * FROM " + TABLE_TIENDA;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        while(cursor.moveToNext()){
+            tiendas.setId(cursor.getInt(0));
+            tiendas.setNombre(cursor.getString(1));
+            tiendas.setDescripcion(cursor.getString(2));
+            tiendas.setLocalizacion(cursor.getString(3));
+            tiendas.setCalle(cursor.getString(4));
+            tiendas.setLongitud(cursor.getDouble(5));
+            tiendas.setLatitud(cursor.getDouble(6));
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return tiendas;
     }
 
     // Valida el login

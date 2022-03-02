@@ -5,8 +5,8 @@ public class Tienda {
     private int id;
     private String nombre;
     private String descripcion;
-    private double localizacion;
-    private double calle;
+    private String localizacion;
+    private String calle;
     private double longitud;
     private double latitud;
 
@@ -35,17 +35,17 @@ public class Tienda {
         this.descripcion = descripcion;
     }
 
-    public double getLocalizacion() {
+    public String getLocalizacion() {
         return localizacion;
     }
-    public void setLocalizacion(double localizacion) {
+    public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
     }
 
-    public double getCalle() {
+    public String getCalle() {
         return calle;
     }
-    public void setCalle(double calle) {
+    public void setCalle(String calle) {
         this.calle = calle;
     }
 
