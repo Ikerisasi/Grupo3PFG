@@ -6,56 +6,36 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
+import es.proyecto.grupo3.ProductosActivity;
 import es.proyecto.grupo3.modelo.Producto;
-import es.proyecto.grupo3.modelo.Tendero;
-import es.proyecto.grupo3.modelo.Tienda;
 
 public class DBManager extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "Proyecto.db";
+    private static final String DB_NAME = "app.db";
     private static final int DB_VERSION = 1;
-    private final Context context;
+    public static final String TABLE_PRODUCTOS = "Productos";
 
-    /* ********************************************************************** */
+    private Context context;
 
-    // Tabla TENDERO
-    private static final String TABLE_TENDERO = "Tendero";
-    private static final String ID_TENDERO = "Tendero";
-    private static final String NOMBRE_TENDERO = "Nombre";
-    private static final String PASS_TENDERO = "Contraseña";
-    private static final String ID_TIENDAS_DEL_TENDERO = "TiendasDelTendero";
-    private static final String ID_PRODUCTOS_DEL_TENDERO = "ProductosDelTendero";
+    //Tabla PRODUCTOS
 
-    // CREATE TABLE TENDERO
-    private static final String CREATE_TABLE_TENDERO = "CREATE TABLE " + TABLE_TENDERO + "(" +
-            ID_TENDERO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            NOMBRE_TENDERO + " TEXT NOT NULL, " +
-            PASS_TENDERO + " TEXT NOT NULL, " +
-            ID_TIENDAS_DEL_TENDERO + " INTEGER NOT NULL, " +
-            ID_PRODUCTOS_DEL_TENDERO + " INTEGER NOT NULL " +
+    private static final String id = "id";
+    private static final String nombre = "nombre";
+    private static final String descripcion = "descripcion";
+    private static final String precio = "precio";
+
+    private static final String CREATE_TABLE_PRODUCTOS = "create table " + TABLE_PRODUCTOS + "(" +
+            id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            nombre + " TEXT NOT NULL," +
+            descripcion+ " TEXT NOT NULL," +
+            precio + " DOUBLE NOT NULL" +
             ")";
-
-    /* ********************************************************************** */
-
-    // Tabla PRODUCTO
-    private static final String TABLE_PRODUCTO = "Producto";
-    private static final String ID_PRODUCTO = "Producto";
-    private static final String NOMBRE_PRODUCTO = "Nombre";
-    private static final String DESCRIPCION_PRODUCTO = "Descripcion";
-    private static final String PRECIO_PRODUCTO = "Precio";
-
-
-    // CREATE TABLE PRODUCTO
-    private static final String CREATE_TABLE_PRODUCTO = "CREATE TABLE " + TABLE_PRODUCTO + "(" +
-            ID_PRODUCTO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            NOMBRE_PRODUCTO + " TEXT NOT NULL, " +
-            DESCRIPCION_PRODUCTO + " TEXT NOT NULL, " +
-            PRECIO_PRODUCTO + " DOUBLE NOT NULL " +
-            ")";
-
-    /* ********************************************************************** */
+    //Hay que agregar un espacio entre las comillas y el tipo de dato para que la base de datos no lo interprete
+    //como el nombre de la columna y te arruine el programa entero
 
     // Tabla TIENDA
     private static final String TABLE_TIENDA = "Tienda";
@@ -67,18 +47,15 @@ public class DBManager extends SQLiteOpenHelper {
     private static final String LONGITUD = "Longitud";
     private static final String LATITUD = "Latitud";
 
-    // CREATE TABLE TIENDA
     private static final String CREATE_TABLE_TIENDA = "CREATE TABLE " + TABLE_TIENDA + "(" +
             ID_TIENDA + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            NOMBRE_TIENDA + " TEXT NOT NULL, " +
-            DESCRIPCION_TIENDA + " TEXT NOT NULL, " +
-            LOCALIZACION + " TEXT NOT NULL, " +
-            CALLE + " TEXT NOT NULL, " +
-            LONGITUD + " DOUBLE NOT NULL, " +
-            LATITUD + " DOUBLE NOT NULL " +
+            NOMBRE_TIENDA + " TEXT, " +
+            DESCRIPCION_TIENDA + " TEXT, " +
+            LOCALIZACION + " TEXT, " +
+            CALLE + " TEXT, " +
+            LONGITUD + " DOUBLE, " +
+            LATITUD + " DOUBLE" +
             ")";
-
-    /* ********************************************************************** */
 
     public DBManager(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -87,90 +64,110 @@ public class DBManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        //Creación tabla productos + información predeterminada
+        sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCTOS);
 
-        // TABLA TENDERO
-        sqLiteDatabase.execSQL(CREATE_TABLE_TENDERO);
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_TENDERO + " VALUES (null, 'admin', 'admin', null, null),(null, 'mediamarkt', 'mediamarkt', null, null), (null, 'zara','zara', null, null)");
+        ContentValues values1 = new ContentValues();
+        values1.put(nombre, "Producto 1");
+        values1.put(descripcion, "muy grande");
+        values1.put(precio, 14.92);
 
-        // TABLA PRODUCTO
-        sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCTO);
-        ContentValues values = new ContentValues();
-        values.put(NOMBRE_PRODUCTO, "Asus ROG G713IE-HX011");
-        values.put(DESCRIPCION_PRODUCTO, "Portatil gaming");
-        values.put(PRECIO_PRODUCTO, "1299.99");
+        ContentValues values2 = new ContentValues();
+        values2.put(nombre, "Producto 2");
+        values2.put(descripcion, "muy pequeñito");
+        values2.put(precio, 92.35);
 
-        sqLiteDatabase.insert(TABLE_PRODUCTO, null, values);
+        ContentValues values3 = new ContentValues();
+        values3.put(nombre, "Producto 3");
+        values3.put(descripcion, "Videojuego");
+        values3.put(precio, 69.99);
 
-        //sqLiteDatabase.execSQL("INSERT INTO " + TABLE_PRODUCTO + " VALUES (null, 'Portátil gaming - Asus ROG G713IE-HX011', 'portatil gaming', 1299.99), (null, 'JEANS STRAIGHT FIT','pantalones vaqueros', 29.95)");
+        sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values1);
+        sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values2);
+        sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values3);
 
-        // TABLA TIENDA
+        //Creación tabla tiendas + información predeterminada
+
         sqLiteDatabase.execSQL(CREATE_TABLE_TIENDA);
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_TIENDA+ " VALUES (null, 'mediamarkt', 'tienda de informatica', 'MegaPark', 'Av. de la Ribera, 5, 48902 Barakaldo', 43.290313868882826, -3.0031712883554906), (null, 'zara','tienda de ropa', 'Abando', 'Don Diego López Haroko, 23, 48009 Bilbo', 43.26209185329112, -2.9314099935629185)");
+
+        ContentValues values10 = new ContentValues();
+        values10.put(NOMBRE_TIENDA, "mediamarkt");
+        values10.put(DESCRIPCION_TIENDA, "tienda de informatica");
+        values10.put(LOCALIZACION, "MegaPark");
+        values10.put(CALLE, "Av. de la Ribera 5, Barakaldo");
+        values10.put(LONGITUD, 43.290313868882826);
+        values10.put(LATITUD, -3.0031712883554906);
+
+        ContentValues values11 = new ContentValues();
+        values11.put(NOMBRE_TIENDA, "zara");
+        values11.put(DESCRIPCION_TIENDA, "tienda de ropa");
+        values11.put(LOCALIZACION, "Abando");
+        values11.put(CALLE, "Don Diego López Haroko 23, Bilbao");
+        values11.put(LONGITUD, 43.26209185329112);
+        values11.put(LATITUD, -2.9314099935629185);
+
+        ContentValues values12 = new ContentValues();
+        values12.put(NOMBRE_TIENDA, "Game");
+        values12.put(DESCRIPCION_TIENDA, "Tienda de videojuegos");
+        values12.put(LOCALIZACION, "Zubiarte");
+        values12.put(CALLE, "Leizaola Lehendakariaren Kalea 2, Bilbao");
+        values12.put(LONGITUD, 43.267771849803424);
+        values12.put(LATITUD, -2.94022183764494);
+
+        sqLiteDatabase.insert(TABLE_TIENDA, null, values10);
+        sqLiteDatabase.insert(TABLE_TIENDA, null, values11);
+        sqLiteDatabase.insert(TABLE_TIENDA, null, values12);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TENDERO);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTOS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
         onCreate(sqLiteDatabase);
     }
 
-    //Mira los productos
-
-    public ArrayList<String> selectProductos() {
-
-        String query = "SELECT * FROM " + TABLE_PRODUCTO;
-        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
-
-        Producto productos;
-        ArrayList<String> response = new ArrayList<>();
-
-        while(cursor.moveToNext()){
-            productos = new Producto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getDouble(3));
-            response.add(productos.toString());
-        }
-
-        return response;
-    }
-
-    //Mira las tiendas
-
-    public Tienda selectTiendas() {
-        Tienda tiendas = new Tienda();
-
-        String query = "SELECT * FROM " + TABLE_TIENDA;
-        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
-
-        while(cursor.moveToNext()){
-            tiendas.setId(cursor.getInt(0));
-            tiendas.setNombre(cursor.getString(1));
-            tiendas.setDescripcion(cursor.getString(2));
-            tiendas.setLocalizacion(cursor.getString(3));
-            tiendas.setCalle(cursor.getString(4));
-            tiendas.setLongitud(cursor.getDouble(5));
-            tiendas.setLatitud(cursor.getDouble(6));
-        }
-        cursor.close();
-        sQLiteDatabase.close();
-        return tiendas;
-    }
-
-    // Valida el login
-    public boolean validateLogin(Tendero tendero) {
-        boolean isValid = false;
-
+    public ArrayList<String> selectProductos2() {
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT " + NOMBRE_TENDERO + ", " + PASS_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " = '" + tendero.getNombre() + "' AND " + PASS_TENDERO + " = '" + tendero.getPassword() + "'", null);
+        Cursor cursor = db.rawQuery(query, null);
 
-        if (c.getCount() > 0) isValid = true;
+        ArrayList<String> respuesta = new ArrayList<String>();;
 
-        c.close();
-        db.close();
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            double coste = cursor.getDouble(3);
 
-        return isValid;
+            String cosaParaArray = id + " | " + name + " | " + desc + " | " + coste;
+            respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    public ArrayList<String> selectTiendas2() {
+        String query = "SELECT * FROM " + TABLE_TIENDA;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();;
+
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            String loc = cursor.getString(3);
+            String calle = cursor.getString(4);
+            double lon = cursor.getDouble(5);
+            double lat = cursor.getDouble(6);
+
+            String cosaParaArray = id + " | " + name + " | " + loc;
+            respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
     }
 
 

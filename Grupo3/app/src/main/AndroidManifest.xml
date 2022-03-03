@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grupo3">
         <activity
+            android:name=".DetallesTienda"
+            android:exported="false" />
+        <activity
             android:name=".DetallesProductoActivity"
             android:exported="false" />
         <activity

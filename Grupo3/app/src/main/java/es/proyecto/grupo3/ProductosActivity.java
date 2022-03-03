@@ -18,14 +18,12 @@ public class ProductosActivity extends AppCompatActivity {
 
     ArrayList<String> productos;
     private ArrayAdapter itemsAdapter;
-    private DBManager dbHelper;
+    private DBManager dbHelper = new DBManager(ProductosActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos);
-
-        dbHelper = new DBManager(ProductosActivity.this);
 
         Button btnProductosProducto = findViewById(R.id.btnProductosProducto);
         Button btnTiendasProducto = findViewById(R.id.btnTiendasProducto);
@@ -46,8 +44,6 @@ public class ProductosActivity extends AppCompatActivity {
             startActivity(intent);
         } );
 
-        //String producto = dbHelper.selectProductos().toString();
-
         CreateAdapter();
 
         ListView listView = (ListView) findViewById(R.id.ListProductos);
@@ -66,7 +62,7 @@ public class ProductosActivity extends AppCompatActivity {
     private void CreateAdapter() {
         productos = new ArrayList<String>();
 
-        productos = dbHelper.selectProductos();
+        productos = dbHelper.selectProductos2();
 
         itemsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, productos);
     }
@@ -78,7 +74,7 @@ public class ProductosActivity extends AppCompatActivity {
         productos = null;
         productos = new ArrayList<String>();
 
-        productos = dbHelper.selectProductos();
+        productos = dbHelper.selectProductos2();
 
         itemsAdapter.addAll(productos);
 
