@@ -62,7 +62,7 @@ public class ProductosActivity extends AppCompatActivity {
     private void CreateAdapter() {
         productos = new ArrayList<String>();
 
-        productos = dbHelper.selectProductos2();
+        productos = dbHelper.selectProductos();
 
         itemsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, productos);
     }
@@ -74,7 +74,7 @@ public class ProductosActivity extends AppCompatActivity {
         productos = null;
         productos = new ArrayList<String>();
 
-        productos = dbHelper.selectProductos2();
+        productos = dbHelper.selectProductos();
 
         itemsAdapter.addAll(productos);
 

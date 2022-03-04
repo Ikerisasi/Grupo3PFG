@@ -4,5 +4,7 @@
     <string name="btnProductos">PRODUCTOS</string>
     <string name="btnTiendas">TIENDAS</string>
     <string name="btnTenderos">TENDEROS</string>
+    <string name="btnLogin">INICIAR SESIÓN</string>
+    <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
 
 </resources>

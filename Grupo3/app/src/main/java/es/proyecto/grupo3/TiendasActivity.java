@@ -61,7 +61,7 @@ public class TiendasActivity extends AppCompatActivity {
     private void CreateAdapter() {
         tiendas = new ArrayList<String>();
 
-        tiendas = dbHelper.selectTiendas2();
+        tiendas = dbHelper.selectTiendas();
 
         itemsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tiendas);
     }
@@ -73,7 +73,7 @@ public class TiendasActivity extends AppCompatActivity {
         tiendas = null;
         tiendas = new ArrayList<String>();
 
-        tiendas = dbHelper.selectTiendas2();
+        tiendas = dbHelper.selectTiendas();
 
         itemsAdapter.addAll(tiendas);
 
