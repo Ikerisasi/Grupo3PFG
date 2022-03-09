@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Grupo3</string>
-
+    <string name="editTextName">Nombre</string>
+    <string name="editTextPassword">Contraseña</string>
+    <string name="btn_Login">Login</string>
     <string name="btnProductos">PRODUCTOS</string>
     <string name="btnTiendas">TIENDAS</string>
     <string name="btnTenderos">TENDEROS</string>
