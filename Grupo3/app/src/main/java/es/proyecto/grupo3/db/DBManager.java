@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import es.proyecto.grupo3.ProductosActivity;
 import es.proyecto.grupo3.modelo.Producto;
+import es.proyecto.grupo3.modelo.Tendero;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -63,6 +64,7 @@ public class DBManager extends SQLiteOpenHelper {
     private static final String DESCRIPCION_PRODUCTO = "descripcion";
     private static final String PRECIO_PRODUCTO = "precio";
     private static final String ID_PRODUCTOS_TENDERO = "idTendero";
+    private static final String ID_PRODUCTOS_TIENDA = "idTienda";
 
     private static final String CREATE_TABLE_PRODUCTOS = "create table " + TABLE_PRODUCTOS + "(" +
             ID_PRODUCTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -70,7 +72,9 @@ public class DBManager extends SQLiteOpenHelper {
             DESCRIPCION_PRODUCTO + " TEXT NOT NULL," +
             PRECIO_PRODUCTO + " DOUBLE NOT NULL," +
             ID_PRODUCTOS_TENDERO + " INTEGER NOT NULL," +
-            " FOREIGN KEY (" + ID_PRODUCTOS_TENDERO + ") REFERENCES " + TABLE_TENDERO + "(" + ID_TENDERO + ")" +
+            ID_PRODUCTOS_TIENDA + " INTEGER NOT NULL," +
+            " FOREIGN KEY (" + ID_PRODUCTOS_TENDERO + ") REFERENCES " + TABLE_TENDERO + "(" + ID_TENDERO + ")," +
+            " FOREIGN KEY (" + ID_PRODUCTOS_TIENDA + ") REFERENCES " + TABLE_TIENDA + "(" + ID_TIENDA + ")" +
             ")";
     //Hay que agregar un espacio entre las comillas y el tipo de dato para que la base de datos no lo interprete
     //como el nombre de la columna y te arruine el programa entero
@@ -146,18 +150,21 @@ public class DBManager extends SQLiteOpenHelper {
         values21.put(DESCRIPCION_PRODUCTO, "muy grande");
         values21.put(PRECIO_PRODUCTO, 14.92);
         values21.put(ID_PRODUCTOS_TENDERO, 1);
+        values21.put(ID_PRODUCTOS_TIENDA, 1);
 
         ContentValues values22 = new ContentValues();
         values22.put(NOMBRE_PRODUCTO, "Producto 2");
         values22.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values22.put(PRECIO_PRODUCTO, 92.35);
         values22.put(ID_PRODUCTOS_TENDERO, 2);
+        values22.put(ID_PRODUCTOS_TIENDA, 2);
 
         ContentValues values23 = new ContentValues();
         values23.put(NOMBRE_PRODUCTO, "Producto 3");
-        values23.put(DESCRIPCION_PRODUCTO, "Videojuego");
+        values23.put(DESCRIPCION_PRODUCTO, "videojuego");
         values23.put(PRECIO_PRODUCTO, 69.99);
         values23.put(ID_PRODUCTOS_TENDERO, 3);
+        values23.put(ID_PRODUCTOS_TIENDA, 3);
 
         sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values21);
         sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values22);
@@ -177,13 +184,14 @@ public class DBManager extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
 
         ArrayList<String> respuesta = new ArrayList<String>();
-        ;
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String name = cursor.getString(1);
             String desc = cursor.getString(2);
             double coste = cursor.getDouble(3);
+            int idTendero = cursor.getInt(4);
+            int idTienda = cursor.getInt(5);
 
             String cosaParaArray = id + " | " + name + " | " + desc + " | " + coste;
             respuesta.add(cosaParaArray);
@@ -198,7 +206,6 @@ public class DBManager extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
 
         ArrayList<String> respuesta = new ArrayList<String>();
-        ;
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
@@ -208,6 +215,7 @@ public class DBManager extends SQLiteOpenHelper {
             String calle = cursor.getString(4);
             double lon = cursor.getDouble(5);
             double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
 
             String cosaParaArray = id + " | " + name + " | " + loc;
             respuesta.add(cosaParaArray);
@@ -217,18 +225,19 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> selectProductosTendero(String nombre) {
-        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTOS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE " + nombre + ");";
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTOS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE '" + nombre + "')";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         ArrayList<String> respuesta = new ArrayList<String>();
-        ;
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String name = cursor.getString(1);
             String desc = cursor.getString(2);
             double coste = cursor.getDouble(3);
+            int idTendero = cursor.getInt(4);
+            int idTienda = cursor.getInt(5);
 
             String cosaParaArray = id + " | " + name;
             respuesta.add(cosaParaArray);
@@ -238,12 +247,11 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> selectTiendasTendero(String nombre) {
-        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE " + nombre + ");";
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE '" + nombre + "')";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         ArrayList<String> respuesta = new ArrayList<String>();
-        ;
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
@@ -253,6 +261,7 @@ public class DBManager extends SQLiteOpenHelper {
             String calle = cursor.getString(4);
             double lon = cursor.getDouble(5);
             double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
 
             String cosaParaArray = id + " | " + name;
             respuesta.add(cosaParaArray);
@@ -261,37 +270,59 @@ public class DBManager extends SQLiteOpenHelper {
         return respuesta;
     }
 
-    public boolean Login(String nombre, String Password) {
-        String query = "SELECT " + PASSWORD_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + nombre + " LIKE "
-                + NOMBRE_TENDERO + ";";
+    public boolean Login2(Tendero tendero) {
+
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor c = db.rawQuery("SELECT " + NOMBRE_TENDERO + ", " + PASSWORD_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE '" + tendero.getNombre() + "' AND " + PASSWORD_TENDERO + " LIKE '" + tendero.getPassword() +"'", null);
 
         boolean loginCorrecto = false;
 
+        if (c.getCount() > 0) loginCorrecto = true;
 
-        while (cursor.moveToNext()) {
+        c.close();
+        db.close();
 
-            String password = cursor.getString(0);
-            if (password.equals(Password)) {
-                loginCorrecto = true;
-            }
-        }
         return loginCorrecto;
 
     }
 
-    public int SelectIdTendero() {
-        int id = 0;
+    public boolean Login(String nombre, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_TENDERO;
+        Cursor cursor = db.rawQuery(query, null);
+
+        boolean loginCorrecto = false;
+
+        while (cursor.moveToNext()) {
+
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String password = cursor.getString(2);
+
+            if (nombre.equalsIgnoreCase(name) && pass.equalsIgnoreCase(password)) {
+                loginCorrecto = true;
+            }
+
+        }
+
+        return loginCorrecto;
+    }
+
+    public int SelectIdTendero(String name) {
+        int idReturn = 0;
         String query = "SELECT * FROM " + TABLE_TENDERO;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         while (cursor.moveToNext()) {
-             id = cursor.getInt(0);
+             int id = cursor.getInt(0);
              String nombre = cursor.getString(1);
              String password = cursor.getString(2);
+
+            if (nombre.equalsIgnoreCase(name)){
+                idReturn = id;
+            }
         }
-        return id;
+        return idReturn;
     }
 }
