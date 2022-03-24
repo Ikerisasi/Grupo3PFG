@@ -7,6 +7,11 @@
     <string name="btnTiendas">TIENDAS</string>
     <string name="btnTenderos">TENDEROS</string>
     <string name="btnLogin">INICIAR SESIÓN</string>
+    <string name="labelNombre">Nombre</string>
+    <string name="labelDesc">Descripción</string>
+    <string name="labelPrecio">Precio</string>
+    <string name="labelCategoria">Categoría</string>
+    <string name="labelTienda">Tienda</string>
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
 
 </resources>

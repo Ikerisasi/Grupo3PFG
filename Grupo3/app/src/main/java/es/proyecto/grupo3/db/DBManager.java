@@ -234,6 +234,30 @@ public class DBManager extends SQLiteOpenHelper {
         return respuesta;
     }
 
+    public ArrayList<String> selectDetallesProducto(int idProducto) {
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTO + " = " + idProducto;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta.add(name);
+            String desc = cursor.getString(2);
+            respuesta.add(desc);
+            double coste = cursor.getDouble(3);
+            respuesta.add(String.valueOf(coste));
+            int idTienda = cursor.getInt(4);
+            respuesta.add(String.valueOf(idTienda));
+            int idCategoria = cursor.getInt(5);
+            respuesta.add(String.valueOf(idCategoria));
+        }
+
+        return respuesta;
+    }
+
     public ArrayList<String> selectTiendas() {
         String query = "SELECT * FROM " + TABLE_TIENDA;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -253,6 +277,34 @@ public class DBManager extends SQLiteOpenHelper {
 
             String cosaParaArray = id + " | " + name + " | " + loc;
             respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    public ArrayList<String> selectDetallesTienda(int idTienda) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDA + " = " + idTienda;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta.add(name);
+            String desc = cursor.getString(2);
+            respuesta.add(desc);
+            String loc = cursor.getString(3);
+            respuesta.add(loc);
+            String calle = cursor.getString(4);
+            respuesta.add(calle);
+            double lon = cursor.getDouble(5);
+            respuesta.add(String.valueOf(lon));
+            double lat = cursor.getDouble(6);
+            respuesta.add(String.valueOf(lat));
+            int idTendero = cursor.getInt(7);
+
         }
 
         return respuesta;
@@ -302,22 +354,6 @@ public class DBManager extends SQLiteOpenHelper {
         }
 
         return respuesta;
-    }
-
-    public boolean Login2(Tendero tendero) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT " + NOMBRE_TENDERO + ", " + PASSWORD_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE '" + tendero.getNombre() + "' AND " + PASSWORD_TENDERO + " LIKE '" + tendero.getPassword() +"'", null);
-
-        boolean loginCorrecto = false;
-
-        if (c.getCount() > 0) loginCorrecto = true;
-
-        c.close();
-        db.close();
-
-        return loginCorrecto;
-
     }
 
     public boolean Login(String nombre, String pass) {
