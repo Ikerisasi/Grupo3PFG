@@ -51,7 +51,7 @@ public class TiendasActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent window = new Intent(TiendasActivity.this, DetallesTienda.class);
+                Intent window = new Intent(TiendasActivity.this, DetallesTiendaActivity.class);
                 startActivity(window);
             }
         });
