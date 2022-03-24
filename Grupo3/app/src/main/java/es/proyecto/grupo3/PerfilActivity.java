@@ -1,9 +1,7 @@
 package es.proyecto.grupo3;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -77,16 +75,16 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
-    private void CreateAdapterProductos(String name) {
+    private void CreateAdapterProductos(int id) {
         productos = new ArrayList<String>();
 
         //En esta llamada tienes que añadir el nombre de usuario del tendero que se ha logeado
-        productos = dbHelper.selectProductosTendero(name);
+        productos = dbHelper.selectProductosTendero(id);
 
         productosAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, productos);
     }
 
-    public void refreshAdapterProductos(String name) {
+    public void refreshAdapterProductos(int id) {
         productosAdapter.clear();
 
         //declaramos nuevamente la variable a null, en caso de no hacer eso entra en un conflicto duplicando valores inexistentes
@@ -94,7 +92,7 @@ public class PerfilActivity extends AppCompatActivity {
         productos = new ArrayList<String>();
 
         //En esta llamada tienes que añadir el nombre de usuario del tendero que se ha logeado
-        productos = dbHelper.selectProductosTendero(name);
+        productos = dbHelper.selectProductosTendero(id);
 
         productosAdapter.addAll(productos);
 
@@ -148,7 +146,7 @@ public class PerfilActivity extends AppCompatActivity {
 
                     textTendero.setText(nombreTendero);
 
-                    CreateAdapterProductos(nombreTendero);
+                    CreateAdapterProductos(IdTendero);
                     productosList.setAdapter(productosAdapter);
 
                     productosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -165,7 +163,7 @@ public class PerfilActivity extends AppCompatActivity {
                     tiendasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent window = new Intent(PerfilActivity.this, DetallesTienda.class);
+                            Intent window = new Intent(PerfilActivity.this, DetallesTiendaActivity.class);
                             startActivity(window);
                         }
                     });
