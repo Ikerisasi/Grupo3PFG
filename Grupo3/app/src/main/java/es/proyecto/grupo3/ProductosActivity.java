@@ -59,6 +59,8 @@ public class ProductosActivity extends AppCompatActivity {
 
     }
 
+    //patata
+
     private void CreateAdapter() {
         productos = new ArrayList<String>();
 
