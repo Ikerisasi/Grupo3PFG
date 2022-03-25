@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.741" />
 
     <TextView
-        android:id="@+id/TxtDesc"
+        android:id="@+id/TxtDescProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -122,7 +122,7 @@
         app:layout_constraintVertical_bias="0.575" />
 
     <TextView
-        android:id="@+id/TxtNombre"
+        android:id="@+id/TxtNombreProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

@@ -12,6 +12,8 @@
     <string name="labelPrecio">Precio</string>
     <string name="labelCategoria">Categoría</string>
     <string name="labelTienda">Tienda</string>
+    <string name="labelLocalizacion">Localización</string>
+    <string name="labelCalle">Calle</string>
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
 
 </resources>

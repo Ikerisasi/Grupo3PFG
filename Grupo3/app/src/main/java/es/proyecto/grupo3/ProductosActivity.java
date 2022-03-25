@@ -52,14 +52,14 @@ public class ProductosActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int idProducto = i + 1;
                 Intent window = new Intent(ProductosActivity.this, DetallesProductoActivity.class);
+                window.putExtra("idProducto", idProducto);
                 startActivity(window);
             }
         });
 
     }
-
-    //patata
 
     private void CreateAdapter() {
         productos = new ArrayList<String>();

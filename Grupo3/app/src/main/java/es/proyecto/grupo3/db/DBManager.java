@@ -227,7 +227,7 @@ public class DBManager extends SQLiteOpenHelper {
             int idTienda = cursor.getInt(4);
             int idCategoria = cursor.getInt(5);
 
-            String cosaParaArray = id + " | " + name + " | " + desc + " | " + coste;
+            String cosaParaArray = name + " | " + desc + " | " + coste;
             respuesta.add(cosaParaArray);
         }
 
@@ -243,6 +243,7 @@ public class DBManager extends SQLiteOpenHelper {
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
+            respuesta.add(String.valueOf(id));
             String name = cursor.getString(1);
             respuesta.add(name);
             String desc = cursor.getString(2);
@@ -253,6 +254,43 @@ public class DBManager extends SQLiteOpenHelper {
             respuesta.add(String.valueOf(idTienda));
             int idCategoria = cursor.getInt(5);
             respuesta.add(String.valueOf(idCategoria));
+        }
+
+        return respuesta;
+    }
+
+    public String selectCategoriaProducto(int idProducto) {
+        String query = "SELECT * FROM " + TABLE_CATEGORIAS + " WHERE " + ID_CATEGORIA + " = (SELECT " + ID_PRODUCTOS_CATEGORIA + " FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTO + " = " + idProducto + ")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        String respuesta = null;
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta = name;
+        }
+
+        return respuesta;
+    }
+
+    public ArrayList<String> selectTiendaProducto(int idProducto) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDA + " = (SELECT " + ID_PRODUCTOS_TIENDA + " FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTO + " = " + idProducto + ")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            respuesta.add(String.valueOf(id));
+            String name = cursor.getString(1);
+            respuesta.add(name);
+            String desc = cursor.getString(2);
+            double coste = cursor.getDouble(3);
+            int idTienda = cursor.getInt(4);
+            int idCategoria = cursor.getInt(5);
         }
 
         return respuesta;
@@ -275,7 +313,7 @@ public class DBManager extends SQLiteOpenHelper {
             double lat = cursor.getDouble(6);
             int idTendero = cursor.getInt(7);
 
-            String cosaParaArray = id + " | " + name + " | " + loc;
+            String cosaParaArray =name + " | " + loc;
             respuesta.add(cosaParaArray);
         }
 
@@ -291,6 +329,7 @@ public class DBManager extends SQLiteOpenHelper {
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
+            respuesta.add(String.valueOf(id));
             String name = cursor.getString(1);
             respuesta.add(name);
             String desc = cursor.getString(2);
@@ -305,6 +344,28 @@ public class DBManager extends SQLiteOpenHelper {
             respuesta.add(String.valueOf(lat));
             int idTendero = cursor.getInt(7);
 
+        }
+
+        return respuesta;
+    }
+
+    public ArrayList<String> selectProductosTienda(int idTiendaProducto) {
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTOS_TIENDA + " = " + idTiendaProducto;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            double coste = cursor.getDouble(3);
+            int idTienda = cursor.getInt(4);
+            int idCategoria = cursor.getInt(5);
+
+            String cosaParaArray = name + " | " + desc + " | " + coste;
+            respuesta.add(cosaParaArray);
         }
 
         return respuesta;
