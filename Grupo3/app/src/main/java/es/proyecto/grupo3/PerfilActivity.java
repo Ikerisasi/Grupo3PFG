@@ -152,7 +152,10 @@ public class PerfilActivity extends AppCompatActivity {
                     productosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent window = new Intent(PerfilActivity.this, DetallesProductoActivity.class);
+                            Intent window = new Intent(PerfilActivity.this, ManipulacionProductosActivity.class);
+                            String producto = productos.get(i);
+                            int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+                            window.putExtra("prodId", prodId);
                             startActivity(window);
                         }
                     });
@@ -163,7 +166,10 @@ public class PerfilActivity extends AppCompatActivity {
                     tiendasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent window = new Intent(PerfilActivity.this, DetallesTiendaActivity.class);
+                            Intent window = new Intent(PerfilActivity.this, ManipulacionTiendasActivity.class);
+                            String tienda = tiendas.get(i);
+                            int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+                            window.putExtra("tiendaId", tiendaId);
                             startActivity(window);
                         }
                     });

@@ -15,5 +15,9 @@
     <string name="labelLocalizacion">Localización</string>
     <string name="labelCalle">Calle</string>
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
+    <string name="btnVolver">VOLVER</string>
+    <string name="btnGuardar">GUARDAR CAMBIOS</string>
+    <string name="btnAgregar">AÑADIR PRODUCTO</string>
+    <string name="btnBorrar">BORRAR PRODUCTO</string>
 
 </resources>

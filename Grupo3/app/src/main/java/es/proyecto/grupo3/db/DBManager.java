@@ -259,6 +259,22 @@ public class DBManager extends SQLiteOpenHelper {
         return respuesta;
     }
 
+    public ArrayList<String> selectCategorias() {
+        String query = "SELECT * FROM " + TABLE_CATEGORIAS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta.add(name);
+        }
+
+        return respuesta;
+    }
+
     public String selectCategoriaProducto(int idProducto) {
         String query = "SELECT * FROM " + TABLE_CATEGORIAS + " WHERE " + ID_CATEGORIA + " = (SELECT " + ID_PRODUCTOS_CATEGORIA + " FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTO + " = " + idProducto + ")";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -412,6 +428,28 @@ public class DBManager extends SQLiteOpenHelper {
 
             String cosaParaArray = id + " | " + name;
             respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    public ArrayList<String> selectTiendasProducto2(int idProducto) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TIENDAS_TENDERO + " FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDA + " = (SELECT " + ID_PRODUCTOS_TIENDA + " FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTO + " = " + idProducto + "))";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta.add(name);
+            String desc = cursor.getString(2);
+            String loc = cursor.getString(3);
+            String calle = cursor.getString(4);
+            double lon = cursor.getDouble(5);
+            double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
         }
 
         return respuesta;
