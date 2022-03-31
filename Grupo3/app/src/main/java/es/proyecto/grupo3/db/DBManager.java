@@ -154,17 +154,17 @@ public class DBManager extends SQLiteOpenHelper {
         values13.put(DESCRIPCION_TIENDA, "Tienda de videojuegos");
         values13.put(LOCALIZACION, "Zubiarte");
         values13.put(CALLE, "Leizaola Lehendakariaren Kalea 2, Bilbao");
-        values13.put(LONGITUD, 43.267771849803424);
-        values13.put(LATITUD, -2.94022183764494);
-        values13.put(ID_TIENDAS_TENDERO, 2);
+        values13.put(LONGITUD, 41.267771849803424);
+        values13.put(LATITUD, -5.94022183764494);
+        values13.put(ID_TIENDAS_TENDERO, 3);
 
         ContentValues values14 = new ContentValues();
         values14.put(NOMBRE_TIENDA, "Churrimuski");
         values14.put(DESCRIPCION_TIENDA, "Tienda de videojuegos");
         values14.put(LOCALIZACION, "Zubiarte");
         values14.put(CALLE, "Leizaola Lehendakariaren Kalea 2, Bilbao");
-        values14.put(LONGITUD, 43.267771849803424);
-        values14.put(LATITUD, -2.94022183764494);
+        values14.put(LONGITUD, 42.267771849803424);
+        values14.put(LATITUD, -4.94022183764494);
         values14.put(ID_TIENDAS_TENDERO, 3);
 
         sqLiteDatabase.insert(TABLE_TIENDA, null, values10);
@@ -201,14 +201,14 @@ public class DBManager extends SQLiteOpenHelper {
         values31.put(NOMBRE_PRODUCTO, "Producto 1");
         values31.put(DESCRIPCION_PRODUCTO, "muy grande");
         values31.put(PRECIO_PRODUCTO, 14.92);
-        values31.put(ID_PRODUCTOS_TIENDA, 1);
+        values31.put(ID_PRODUCTOS_TIENDA, 3);
         values31.put(ID_PRODUCTOS_CATEGORIA, 1);
 
         ContentValues values32 = new ContentValues();
         values32.put(NOMBRE_PRODUCTO, "Producto 2");
         values32.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values32.put(PRECIO_PRODUCTO, 92.35);
-        values32.put(ID_PRODUCTOS_TIENDA, 2);
+        values32.put(ID_PRODUCTOS_TIENDA, 3);
         values32.put(ID_PRODUCTOS_CATEGORIA, 2);
 
         ContentValues values33 = new ContentValues();
@@ -229,7 +229,7 @@ public class DBManager extends SQLiteOpenHelper {
         values35.put(NOMBRE_PRODUCTO, "Producto 5");
         values35.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values35.put(PRECIO_PRODUCTO, 92.35);
-        values35.put(ID_PRODUCTOS_TIENDA, 5);
+        values35.put(ID_PRODUCTOS_TIENDA, 3);
         values35.put(ID_PRODUCTOS_CATEGORIA, 1);
 
         sqLiteDatabase.insert(TABLE_PRODUCTOS, null, values31);
