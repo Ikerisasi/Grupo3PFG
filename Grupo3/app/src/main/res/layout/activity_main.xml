@@ -56,12 +56,12 @@
         android:id="@+id/imageView3"
         android:layout_width="373dp"
         android:layout_height="361dp"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="TODO" />
+        app:layout_constraintVertical_bias="0.19999999"
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

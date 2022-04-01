@@ -208,7 +208,7 @@ public class DBManager extends SQLiteOpenHelper {
         values32.put(NOMBRE_PRODUCTO, "Producto 2");
         values32.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values32.put(PRECIO_PRODUCTO, 92.35);
-        values32.put(ID_PRODUCTOS_TIENDA, 3);
+        values32.put(ID_PRODUCTOS_TIENDA, 4);
         values32.put(ID_PRODUCTOS_CATEGORIA, 2);
 
         ContentValues values33 = new ContentValues();
@@ -222,7 +222,7 @@ public class DBManager extends SQLiteOpenHelper {
         values34.put(NOMBRE_PRODUCTO, "Producto 4");
         values34.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values34.put(PRECIO_PRODUCTO, 92.35);
-        values34.put(ID_PRODUCTOS_TIENDA, 3);
+        values34.put(ID_PRODUCTOS_TIENDA, 4);
         values34.put(ID_PRODUCTOS_CATEGORIA, 3);
 
         ContentValues values35 = new ContentValues();
