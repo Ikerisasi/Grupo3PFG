@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText editName =  findViewById(R.id.editTextName);
         EditText editPassword = findViewById(R.id.editTextPassword);
         Button btn_Login = findViewById(R.id.btn_Login);
+        Button btn_Volver = findViewById(R.id.BtnAtras);
 
     btn_Login.setOnClickListener(v -> {
 
@@ -50,6 +51,12 @@ public class LoginActivity extends AppCompatActivity {
             toast.show();
         }
     });
+
+        btn_Volver.setOnClickListener(v -> {
+            Intent intent = getIntent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
+        });
 
 //        btn_Login.setOnClickListener( (v) -> {
 //            DBManager db = new DBManager(this);

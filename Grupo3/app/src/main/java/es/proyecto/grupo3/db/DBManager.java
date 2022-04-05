@@ -446,8 +446,8 @@ public class DBManager extends SQLiteOpenHelper {
         return respuesta;
     }
 
-    public ArrayList<String> selectTiendasTendero(String nombre) {
-        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + NOMBRE_TENDERO + " LIKE '" + nombre + "')";
+    public ArrayList<String> selectTiendasTendero(int idtendero) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + ID_TENDERO + " = " + idtendero + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 

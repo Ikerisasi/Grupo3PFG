@@ -19,29 +19,50 @@ public class ProductosActivity extends AppCompatActivity {
     ArrayList<String> productos;
     private ArrayAdapter itemsAdapter;
     private DBManager dbHelper = new DBManager(ProductosActivity.this);
+    private Boolean logeado = false;
+    private int idTendero = 999;
+    private String nombreTendero = "patata";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos);
 
-        Button btnProductosProducto = findViewById(R.id.btnProductosProducto);
+        Intent mIntent = getIntent();
+        Bundle extrasGet = mIntent.getExtras();
+        logeado = extrasGet.getBoolean("logeado");
+        if (logeado == true){
+            idTendero = extrasGet.getInt("id");
+            nombreTendero = extrasGet.getString("nombre");
+        }
+
         Button btnTiendasProducto = findViewById(R.id.btnTiendasProducto);
         Button btnTenderosProducto = findViewById(R.id.btnTenderosProducto);
 
-        btnProductosProducto.setOnClickListener( (v) -> {
-            Intent intent = new Intent(this, ProductosActivity.class);
-            startActivity(intent);
-        } );
-
         btnTiendasProducto.setOnClickListener( (v) -> {
             Intent intent = new Intent(this, TiendasActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("logeado", logeado);
+            if (logeado == true){
+                extras.putInt("id", idTendero);
+                extras.putString("nombre", nombreTendero);
+            }
+            intent.putExtras(extras);
             startActivity(intent);
+            finish();
         } );
 
         btnTenderosProducto.setOnClickListener( (v) -> {
             Intent intent = new Intent(this, PerfilActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("logeado", logeado);
+            if (logeado == true){
+                extras.putInt("id", idTendero);
+                extras.putString("nombre", nombreTendero);
+            }
+            intent.putExtras(extras);
             startActivity(intent);
+            finish();
         } );
 
         CreateAdapter();

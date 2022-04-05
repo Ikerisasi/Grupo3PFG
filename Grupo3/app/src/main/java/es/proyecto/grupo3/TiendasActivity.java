@@ -19,29 +19,50 @@ public class TiendasActivity extends AppCompatActivity {
     ArrayList<String> tiendas;
     private ArrayAdapter itemsAdapter;
     private DBManager dbHelper = new DBManager(TiendasActivity.this);
+    private Boolean logeado = false;
+    private int idTendero = 999;
+    private String nombreTendero = "patata";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tiendas);
 
+        Intent mIntent = getIntent();
+        Bundle extrasGet = mIntent.getExtras();
+        logeado = extrasGet.getBoolean("logeado");
+        if (logeado == true){
+            idTendero = extrasGet.getInt("id");
+            nombreTendero = extrasGet.getString("nombre");
+        }
+
         Button btnProductosTienda = findViewById(R.id.btnProductosTienda);
-        Button btnTiendasTienda = findViewById(R.id.btnTiendasTienda);
         Button btnTenderosTienda = findViewById(R.id.btnTenderosTienda);
 
         btnProductosTienda.setOnClickListener((v) -> {
             Intent intent = new Intent(this, ProductosActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("logeado", logeado);
+            if (logeado == true){
+                extras.putInt("id", idTendero);
+                extras.putString("nombre", nombreTendero);
+            }
+            intent.putExtras(extras);
             startActivity(intent);
-        });
-
-        btnTiendasTienda.setOnClickListener((v) -> {
-            Intent intent = new Intent(this, TiendasActivity.class);
-            startActivity(intent);
+            finish();
         });
 
         btnTenderosTienda.setOnClickListener((v) -> {
             Intent intent = new Intent(this, PerfilActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("logeado", logeado);
+            if (logeado == true){
+                extras.putInt("id", idTendero);
+                extras.putString("nombre", nombreTendero);
+            }
+            intent.putExtras(extras);
             startActivity(intent);
+            finish();
         });
         CreateAdapter();
 
