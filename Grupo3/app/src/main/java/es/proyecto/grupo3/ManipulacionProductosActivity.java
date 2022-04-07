@@ -25,7 +25,6 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
     private EditText textPrecio;
     private Spinner spinCategoria;
     private Spinner spinTienda;
-    private Button botonVolver;
     private Button botonGuardar;
     private Button botonAgregar;
     private Button botonBorrar;
@@ -44,7 +43,6 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
         textPrecio = findViewById(R.id.editPrecio);
         spinCategoria = findViewById(R.id.spinCategoria);
         spinTienda = findViewById(R.id.spinTienda);
-        botonVolver = findViewById(R.id.btnVolver);
         botonGuardar = findViewById(R.id.btnGuardar);
         botonAgregar = findViewById(R.id.btnAgregar);
         botonBorrar = findViewById(R.id.btnBorrar);

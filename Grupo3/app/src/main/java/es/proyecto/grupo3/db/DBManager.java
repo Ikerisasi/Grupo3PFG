@@ -425,7 +425,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> selectProductosTendero(int idTendero) {
-        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTOS_TIENDA + " = (SELECT " + ID_TIENDA + " FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = " + idTendero + ")";
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE " + ID_PRODUCTOS_TIENDA + " IN (SELECT " + ID_TIENDA + " FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = " + idTendero + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
