@@ -9,6 +9,18 @@ public class Tienda {
     private String calle;
     private double longitud;
     private double latitud;
+    private int idTendero;
+
+    public Tienda(int id, String nombre, String descripcion, String localizacion, String calle, double longitud, double latitud, int idTendero) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.localizacion = localizacion;
+        this.calle = calle;
+        this.longitud = longitud;
+        this.latitud = latitud;
+        this.idTendero = idTendero;
+    }
 
     public Tienda() {
 
@@ -61,6 +73,13 @@ public class Tienda {
     }
     public void setLatitud(double latitud) {
         this.latitud = latitud;
+    }
+
+    public int getIdTendero() {
+        return idTendero;
+    }
+    public void setIdTendero(int idTendero) {
+        this.idTendero = idTendero;
     }
 
 }

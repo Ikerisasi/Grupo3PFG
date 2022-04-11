@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import es.proyecto.grupo3.ProductosActivity;
 import es.proyecto.grupo3.modelo.Producto;
 import es.proyecto.grupo3.modelo.Tendero;
+import es.proyecto.grupo3.modelo.Tienda;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -249,6 +250,98 @@ public class DBManager extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    //Metodo para crear tiendas
+
+    public void insertTienda (Tienda tienda) {
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE_TIENDA, tienda.getNombre());
+        values.put(DESCRIPCION_TIENDA, tienda.getDescripcion());
+        values.put(LOCALIZACION, tienda.getLocalizacion());
+        values.put(CALLE, tienda.getCalle());
+        values.put(LONGITUD, tienda.getLongitud());
+        values.put(LATITUD, tienda.getLatitud());
+        values.put(ID_TIENDAS_TENDERO, tienda.getIdTendero());
+
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        sQLiteDatabase.insert(TABLE_TIENDA, null, values);
+        sQLiteDatabase.close();
+    }
+
+    //Metodo para editar tiendas
+
+    public boolean updateTienda (Tienda tienda) {
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(NOMBRE_TIENDA, tienda.getNombre());
+        args.put(DESCRIPCION_TIENDA, tienda.getDescripcion());
+        args.put(LOCALIZACION, tienda.getLocalizacion());
+        args.put(CALLE, tienda.getCalle());
+        args.put(LONGITUD, tienda.getLongitud());
+        args.put(LATITUD, tienda.getLatitud());
+        args.put(ID_TIENDAS_TENDERO, tienda.getIdTendero());
+        String whereClause = ID_TIENDA + "=" + tienda.getId();
+        return sQLiteDatabase.update(TABLE_TIENDA, args, whereClause, null) > 0;
+    }
+
+    //Metodo para borrar tiendas
+
+    public int deleteTienda (int id) {
+        int ret;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Tienda tienda = new Tienda();
+        tienda.setId(id);
+        ret = sQLiteDatabase.delete(TABLE_TIENDA, ID_TIENDA + "=?",
+                new String[] {
+                        String.valueOf(tienda.getId())
+                });
+        sQLiteDatabase.close();
+        return ret;
+    }
+
+    //Metodo para crear productos
+
+    public void insertProducto (Producto producto) {
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE_PRODUCTO, producto.getNombre());
+        values.put(DESCRIPCION_PRODUCTO, producto.getDescripcion());
+        values.put(PRECIO_PRODUCTO, producto.getPrecio());
+        values.put(ID_PRODUCTOS_TIENDA, producto.getIdTienda());
+        values.put(ID_PRODUCTOS_CATEGORIA, producto.getIdCategoria());
+
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        sQLiteDatabase.insert(TABLE_PRODUCTOS, null, values);
+        sQLiteDatabase.close();
+    }
+
+    //Metodo para editar productos
+
+    public boolean updateProducto (Producto producto) {
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(NOMBRE_PRODUCTO, producto.getNombre());
+        args.put(DESCRIPCION_PRODUCTO, producto.getDescripcion());
+        args.put(PRECIO_PRODUCTO, producto.getPrecio());
+        args.put(ID_PRODUCTOS_TIENDA, producto.getIdTienda());
+        args.put(ID_PRODUCTOS_CATEGORIA, producto.getIdCategoria());
+        String whereClause = ID_PRODUCTO + "=" + producto.getId();
+        return sQLiteDatabase.update(TABLE_TIENDA, args, whereClause, null) > 0;
+    }
+
+    //Metodo para borrar productos
+
+    public int deleteProducto (int id) {
+        int ret;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Producto producto = new Producto ();
+        producto.setId(id);
+        ret = sQLiteDatabase.delete(TABLE_PRODUCTOS, ID_PRODUCTO + "=?",
+                new String[] {
+                        String.valueOf(producto.getId())
+                });
+        sQLiteDatabase.close();
+        return ret;
+    }
+
     public ArrayList<String> selectProductos() {
         String query = "SELECT * FROM " + TABLE_PRODUCTOS;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -446,6 +539,7 @@ public class DBManager extends SQLiteOpenHelper {
         return respuesta;
     }
 
+    //Lista de tiendas del tendero para mostrarlas en el perfil
     public ArrayList<String> selectTiendasTendero(int idtendero) {
         String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + ID_TENDERO + " = " + idtendero + ")";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -465,6 +559,29 @@ public class DBManager extends SQLiteOpenHelper {
 
             String cosaParaArray = id + " | " + name;
             respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    //Lista de tiendas del tendero para añadir nuevos productos
+    public ArrayList<String> selectTiendasTendero2(int idtendero) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + ID_TIENDAS_TENDERO + " = (SELECT " + ID_TENDERO + " FROM " + TABLE_TENDERO + " WHERE " + ID_TENDERO + " = " + idtendero + ")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            respuesta.add(name);
+            String desc = cursor.getString(2);
+            String loc = cursor.getString(3);
+            String calle = cursor.getString(4);
+            double lon = cursor.getDouble(5);
+            double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
         }
 
         return respuesta;

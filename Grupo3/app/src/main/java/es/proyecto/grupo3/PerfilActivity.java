@@ -29,6 +29,8 @@ public class PerfilActivity extends AppCompatActivity {
     private TextView textTendero;
     private TextView textMensaje;
     private Button btnLogin;
+    private Button btnNuevaTienda;
+    private Button btnNuevoProducto;
     private ImageView imagen;
     private LinearLayout tiendasLayout;
     private ListView tiendasList;
@@ -37,6 +39,7 @@ public class PerfilActivity extends AppCompatActivity {
     private String nombreTendero = "patata";
     private Boolean logeado = false;
     private int idTendero = 999;
+    private Boolean manipulacionBoton = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class PerfilActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         textMensaje = findViewById(R.id.TxtMensaje);
         imagen = findViewById(R.id.imageTendero);
+        btnNuevaTienda = findViewById(R.id.BtnNuevaTienda);
+        btnNuevoProducto = findViewById(R.id.BtnNuevoProducto);
 
         Intent mIntent = getIntent();
         Bundle extrasGet = mIntent.getExtras();
@@ -174,6 +179,8 @@ public class PerfilActivity extends AppCompatActivity {
         btnLogin.setVisibility(View.INVISIBLE);
 
         textTendero.setVisibility(View.VISIBLE);
+        btnNuevaTienda.setVisibility(View.VISIBLE);
+        btnNuevoProducto.setVisibility(View.VISIBLE);
         tiendasLayout.setVisibility(View.VISIBLE);
         tiendasList.setVisibility(View.VISIBLE);
         productosLayout.setVisibility(View.VISIBLE);
@@ -187,10 +194,19 @@ public class PerfilActivity extends AppCompatActivity {
         productosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent window = new Intent(PerfilActivity.this, ManipulacionProductosActivity.class);
+//                String producto = productos.get(i);
+//                int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+//                window.putExtra("prodId", prodId);
+//                startActivity(window);
+
                 Intent window = new Intent(PerfilActivity.this, ManipulacionProductosActivity.class);
                 String producto = productos.get(i);
                 int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
-                window.putExtra("prodId", prodId);
+                Bundle extras = new Bundle();
+                extras.putBoolean("boton", manipulacionBoton);
+                extras.putInt("prodId", prodId);
+                window.putExtras(extras);
                 startActivity(window);
             }
         });
@@ -201,12 +217,41 @@ public class PerfilActivity extends AppCompatActivity {
         tiendasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent window = new Intent(PerfilActivity.this, ManipulacionTiendasActivity.class);
+//                String tienda = tiendas.get(i);
+//                int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+//                window.putExtra("tiendaId", tiendaId);
+//                startActivity(window);
+
                 Intent window = new Intent(PerfilActivity.this, ManipulacionTiendasActivity.class);
                 String tienda = tiendas.get(i);
                 int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
-                window.putExtra("tiendaId", tiendaId);
+                Bundle extras = new Bundle();
+                extras.putBoolean("boton", manipulacionBoton);
+                extras.putInt("tiendaId", tiendaId);
+                window.putExtras(extras);
                 startActivity(window);
             }
+        });
+
+        btnNuevaTienda.setOnClickListener((v) -> {
+            Intent intent = new Intent(this, ManipulacionTiendasActivity.class);
+            manipulacionBoton = true;
+            Bundle extras = new Bundle();
+            extras.putBoolean("boton", manipulacionBoton);
+            extras.putInt("id", idTendero);
+            intent.putExtras(extras);
+            startActivity(intent);
+        });
+
+        btnNuevoProducto.setOnClickListener((v) -> {
+            Intent intent = new Intent(this, ManipulacionProductosActivity.class);
+            manipulacionBoton = true;
+            Bundle extras = new Bundle();
+            extras.putBoolean("boton", manipulacionBoton);
+            extras.putInt("id", idTendero);
+            intent.putExtras(extras);
+            startActivity(intent);
         });
 
     }

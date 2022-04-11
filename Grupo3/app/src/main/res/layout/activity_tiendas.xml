@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".TiendasActivity">
 
+    <EditText
+        android:id="@+id/editFiltroTiendas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/btnFiltroTiendas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnBuscar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
     <Button
         android:id="@+id/btnTenderosTienda"
         android:layout_width="128dp"
@@ -52,14 +79,14 @@
         tools:visibility="visible" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="659dp"
+        android:layout_width="411dp"
+        android:layout_height="573dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027">
+        app:layout_constraintVertical_bias="0.58000004">
 
         <ListView
             android:id="@+id/ListaTiendas"

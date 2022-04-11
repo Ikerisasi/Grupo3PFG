@@ -62,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.096" />
 
     <TextView
         android:id="@+id/TxtMensaje"
@@ -147,5 +147,31 @@
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/tendero"
         tools:srcCompat="@drawable/tendero" />
+
+    <Button
+        android:id="@+id/BtnNuevaTienda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnNuevaTienda"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <Button
+        android:id="@+id/BtnNuevoProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnNuevoProducto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

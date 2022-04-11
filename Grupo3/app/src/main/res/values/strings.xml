@@ -19,7 +19,12 @@
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
     <string name="btnVolver">VOLVER</string>
     <string name="btnGuardar">GUARDAR CAMBIOS</string>
-    <string name="btnAgregar">AÑADIR PRODUCTO</string>
-    <string name="btnBorrar">BORRAR PRODUCTO</string>
+    <string name="btnAgregarProducto">AÑADIR PRODUCTO</string>
+    <string name="btnAgregarTienda">AÑADIR TIENDA</string>
+    <string name="btnBorrarProducto">BORRAR PRODUCTO</string>
+    <string name="btnBorrarTienda">BORRAR TIENDA</string>
+    <string name="btnNuevoProducto">NUEVO PRODUCTO</string>
+    <string name="btnNuevaTienda">NUEVA TIENDA</string>
+    <string name="btnBuscar">BUSCAR</string>
 
 </resources>
