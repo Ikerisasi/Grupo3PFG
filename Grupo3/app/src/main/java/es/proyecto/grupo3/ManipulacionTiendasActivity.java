@@ -13,6 +13,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import es.proyecto.grupo3.db.DBManager;
+import es.proyecto.grupo3.modelo.Producto;
+import es.proyecto.grupo3.modelo.Tienda;
 
 public class ManipulacionTiendasActivity extends AppCompatActivity {
 
@@ -27,7 +29,8 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
     private EditText editLong;
     private EditText editLat;
     private Boolean manipulacionBoton = false;
-    private int intValue;
+    private int idTienda;
+    private int idTendero;
     private Button botonGuardar;
     private Button botonAgregar;
     private Button botonBorrar;
@@ -52,10 +55,11 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
         Bundle extrasGet = mIntent.getExtras();
         manipulacionBoton = extrasGet.getBoolean("boton");
         if (manipulacionBoton == false){
-            intValue = mIntent.getIntExtra("tiendaId", 0);
+            idTienda = mIntent.getIntExtra("tiendaId", 0);
+            idTendero = mIntent.getIntExtra("tenderoId", 0);
 
             tiendas = new ArrayList<String>();
-            tiendas = dbHelper.selectDetallesTienda(intValue);
+            tiendas = dbHelper.selectDetallesTienda(idTienda);
 
             editNombre.setText(tiendas.get(1));
             editDesc.setText(tiendas.get(2));
@@ -74,10 +78,58 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
 
             //Añadir liseners para los botones
 
+            botonGuardar.setOnClickListener((v) -> {
+
+                String nombre = editNombre.getText().toString();
+                String descripcion = editDesc.getText().toString();
+                String localizacion = editLoc.getText().toString();
+                String calle = editCalle.getText().toString();
+                Double longitud = Double.parseDouble(editLong.getText().toString());
+                Double latitud = Double.parseDouble(editLat.getText().toString());
+
+                Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+
+                Boolean update = dbHelper.updateTienda(tienda);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
+
+            botonBorrar.setOnClickListener((v) -> {
+
+                dbHelper.deleteTienda(idTienda);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
+
         } else{
             botonAgregar.setVisibility(View.VISIBLE);
 
             //Añadir liseners para los botones
+
+            botonAgregar.setOnClickListener((v) -> {
+
+                String nombre = editNombre.getText().toString();
+                String descripcion = editDesc.getText().toString();
+                String localizacion = editLoc.getText().toString();
+                String calle = editCalle.getText().toString();
+                Double longitud = Double.parseDouble(editLong.getText().toString());
+                Double latitud = Double.parseDouble(editLat.getText().toString());
+
+                Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+
+                dbHelper.insertTienda(tienda);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
         }
 
     }
@@ -85,7 +137,7 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
     private void CreateAdapter() {
         productosTienda = new ArrayList<String>();
 
-        productosTienda = dbHelper.selectProductosTienda(intValue);
+        productosTienda = dbHelper.selectProductosTienda(idTienda);
 
         itemsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, productosTienda);
     }

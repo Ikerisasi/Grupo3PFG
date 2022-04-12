@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class ProductosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos);
 
+        EditText filtroProd = findViewById(R.id.editFiltroProductos);
+        Button buscar = findViewById(R.id.BtnFiltroProductos);
+        Button btnTiendasProducto = findViewById(R.id.btnTiendasProducto);
+        Button btnTenderosProducto = findViewById(R.id.btnTenderosProducto);
+
         Intent mIntent = getIntent();
         Bundle extrasGet = mIntent.getExtras();
         logeado = extrasGet.getBoolean("logeado");
@@ -35,9 +41,6 @@ public class ProductosActivity extends AppCompatActivity {
             idTendero = extrasGet.getInt("id");
             nombreTendero = extrasGet.getString("nombre");
         }
-
-        Button btnTiendasProducto = findViewById(R.id.btnTiendasProducto);
-        Button btnTenderosProducto = findViewById(R.id.btnTenderosProducto);
 
         btnTiendasProducto.setOnClickListener( (v) -> {
             Intent intent = new Intent(this, TiendasActivity.class);
@@ -79,6 +82,15 @@ public class ProductosActivity extends AppCompatActivity {
                 startActivity(window);
             }
         });
+
+        buscar.setOnClickListener( (v) -> {
+
+            String palabraFiltro = filtroProd.getText().toString().toUpperCase();
+
+            productos = dbHelper.filtroProductos(palabraFiltro);
+
+            refreshAdapter();
+        } );
 
     }
 

@@ -85,7 +85,7 @@ public class DBManager extends SQLiteOpenHelper {
             PRECIO_PRODUCTO + " DOUBLE NOT NULL," +
             ID_PRODUCTOS_TIENDA + " INTEGER NOT NULL," +
             ID_PRODUCTOS_CATEGORIA + " INTEGER NOT NULL," +
-            " FOREIGN KEY (" + ID_PRODUCTOS_TIENDA + ") REFERENCES " + TABLE_TIENDA + "(" + ID_TIENDA + ")," +
+            " FOREIGN KEY (" + ID_PRODUCTOS_TIENDA + ") REFERENCES " + TABLE_TIENDA + "(" + ID_TIENDA + ") ON DELETE CASCADE," +
             " FOREIGN KEY (" + ID_PRODUCTOS_CATEGORIA + ") REFERENCES " + TABLE_CATEGORIAS + "(" + ID_CATEGORIA + ")" +
             ")";
     //Hay que agregar un espacio entre las comillas y el tipo de dato para que la base de datos no lo interprete
@@ -199,35 +199,35 @@ public class DBManager extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCTOS);
 
         ContentValues values31 = new ContentValues();
-        values31.put(NOMBRE_PRODUCTO, "Producto 1");
+        values31.put(NOMBRE_PRODUCTO, "Poducto");
         values31.put(DESCRIPCION_PRODUCTO, "muy grande");
         values31.put(PRECIO_PRODUCTO, 14.92);
         values31.put(ID_PRODUCTOS_TIENDA, 3);
         values31.put(ID_PRODUCTOS_CATEGORIA, 1);
 
         ContentValues values32 = new ContentValues();
-        values32.put(NOMBRE_PRODUCTO, "Producto 2");
+        values32.put(NOMBRE_PRODUCTO, "Bicicleta");
         values32.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values32.put(PRECIO_PRODUCTO, 92.35);
         values32.put(ID_PRODUCTOS_TIENDA, 4);
         values32.put(ID_PRODUCTOS_CATEGORIA, 2);
 
         ContentValues values33 = new ContentValues();
-        values33.put(NOMBRE_PRODUCTO, "Producto 3");
+        values33.put(NOMBRE_PRODUCTO, "Lavadora");
         values33.put(DESCRIPCION_PRODUCTO, "videojuego");
         values33.put(PRECIO_PRODUCTO, 69.99);
         values33.put(ID_PRODUCTOS_TIENDA, 3);
         values33.put(ID_PRODUCTOS_CATEGORIA, 3);
 
         ContentValues values34 = new ContentValues();
-        values34.put(NOMBRE_PRODUCTO, "Producto 4");
+        values34.put(NOMBRE_PRODUCTO, "POLLO");
         values34.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values34.put(PRECIO_PRODUCTO, 92.35);
         values34.put(ID_PRODUCTOS_TIENDA, 4);
         values34.put(ID_PRODUCTOS_CATEGORIA, 3);
 
         ContentValues values35 = new ContentValues();
-        values35.put(NOMBRE_PRODUCTO, "Producto 5");
+        values35.put(NOMBRE_PRODUCTO, "patata");
         values35.put(DESCRIPCION_PRODUCTO, "muy pequeñito");
         values35.put(PRECIO_PRODUCTO, 92.35);
         values35.put(ID_PRODUCTOS_TIENDA, 3);
@@ -254,6 +254,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     public void insertTienda (Tienda tienda) {
         ContentValues values = new ContentValues();
+
         values.put(NOMBRE_TIENDA, tienda.getNombre());
         values.put(DESCRIPCION_TIENDA, tienda.getDescripcion());
         values.put(LOCALIZACION, tienda.getLocalizacion());
@@ -272,6 +273,7 @@ public class DBManager extends SQLiteOpenHelper {
     public boolean updateTienda (Tienda tienda) {
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         ContentValues args = new ContentValues();
+
         args.put(NOMBRE_TIENDA, tienda.getNombre());
         args.put(DESCRIPCION_TIENDA, tienda.getDescripcion());
         args.put(LOCALIZACION, tienda.getLocalizacion());
@@ -280,6 +282,7 @@ public class DBManager extends SQLiteOpenHelper {
         args.put(LATITUD, tienda.getLatitud());
         args.put(ID_TIENDAS_TENDERO, tienda.getIdTendero());
         String whereClause = ID_TIENDA + "=" + tienda.getId();
+
         return sQLiteDatabase.update(TABLE_TIENDA, args, whereClause, null) > 0;
     }
 
@@ -302,6 +305,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     public void insertProducto (Producto producto) {
         ContentValues values = new ContentValues();
+
         values.put(NOMBRE_PRODUCTO, producto.getNombre());
         values.put(DESCRIPCION_PRODUCTO, producto.getDescripcion());
         values.put(PRECIO_PRODUCTO, producto.getPrecio());
@@ -318,13 +322,15 @@ public class DBManager extends SQLiteOpenHelper {
     public boolean updateProducto (Producto producto) {
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         ContentValues args = new ContentValues();
+
         args.put(NOMBRE_PRODUCTO, producto.getNombre());
         args.put(DESCRIPCION_PRODUCTO, producto.getDescripcion());
         args.put(PRECIO_PRODUCTO, producto.getPrecio());
         args.put(ID_PRODUCTOS_TIENDA, producto.getIdTienda());
         args.put(ID_PRODUCTOS_CATEGORIA, producto.getIdCategoria());
         String whereClause = ID_PRODUCTO + "=" + producto.getId();
-        return sQLiteDatabase.update(TABLE_TIENDA, args, whereClause, null) > 0;
+
+        return sQLiteDatabase.update(TABLE_PRODUCTOS, args, whereClause, null) > 0;
     }
 
     //Metodo para borrar productos
@@ -344,6 +350,30 @@ public class DBManager extends SQLiteOpenHelper {
 
     public ArrayList<String> selectProductos() {
         String query = "SELECT * FROM " + TABLE_PRODUCTOS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            double coste = cursor.getDouble(3);
+            int idTienda = cursor.getInt(4);
+            int idCategoria = cursor.getInt(5);
+
+            String cosaParaArray = name + " | " + desc + " | " + coste;
+            respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    //QUery para encontrar los productos por palabra
+
+    public ArrayList<String> filtroProductos(String filtro) {
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE UPPER(" + NOMBRE_PRODUCTO + ") LIKE '" + filtro + "%'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -461,6 +491,30 @@ public class DBManager extends SQLiteOpenHelper {
 
             String cosaParaArray =name + " | " + loc;
             respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    //Query para sacar el ID de la tienda en función del nombre
+
+    public int selectIdTiendas(String nombre) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE " + NOMBRE_TIENDA + " LIKE '" + nombre + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        int respuesta = 0;
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            respuesta = id;
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            String loc = cursor.getString(3);
+            String calle = cursor.getString(4);
+            double lon = cursor.getDouble(5);
+            double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
         }
 
         return respuesta;

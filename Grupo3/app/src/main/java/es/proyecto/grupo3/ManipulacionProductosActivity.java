@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import es.proyecto.grupo3.db.DBManager;
+import es.proyecto.grupo3.modelo.Producto;
 
 public class ManipulacionProductosActivity extends AppCompatActivity {
 
@@ -86,6 +87,34 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
 
             //Añadir liseners para los botones
 
+            botonGuardar.setOnClickListener((v) -> {
+
+                int id = intValue;
+                String nombre = textNombre.getText().toString();
+                String descripcion = textDesc.getText().toString();
+                Double precio = Double.parseDouble(textPrecio.getText().toString());
+                int tienda = dbHelper.selectIdTiendas(spinTienda.getSelectedItem().toString());
+                int categoria = spinCategoria.getSelectedItemPosition() + 1;
+
+                Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+
+                Boolean update = dbHelper.updateProducto(prod);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
+
+            botonBorrar.setOnClickListener((v) -> {
+                dbHelper.deleteProducto(intValue);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
+
         } else{
 
             intValue = mIntent.getIntExtra("id", 0);
@@ -101,6 +130,25 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
             botonAgregar.setVisibility(View.VISIBLE);
 
             //Añadir liseners para los botones
+
+            botonAgregar.setOnClickListener((v) -> {
+
+                int id = 999999;
+                String nombre = textNombre.getText().toString();
+                String descripcion = textDesc.getText().toString();
+                Double precio = Double.parseDouble(textPrecio.getText().toString());
+                int tienda = dbHelper.selectIdTiendas(spinTienda.getSelectedItem().toString());
+                int categoria = spinCategoria.getSelectedItemPosition() + 1;
+
+                Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+
+                dbHelper.insertProducto(prod);
+
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
+
+                finish();
+            });
         }
 
 

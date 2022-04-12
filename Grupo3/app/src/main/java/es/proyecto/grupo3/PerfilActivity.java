@@ -21,6 +21,8 @@ import es.proyecto.grupo3.db.DBManager;
 public class PerfilActivity extends AppCompatActivity {
 
     public static final int Secondary_Activity_1 = 1;
+    public static final int Secondary_Activity_2 = 2;
+    public static final int Secondary_Activity_3 = 3;
     private ArrayList<String> productos;
     private ArrayAdapter productosAdapter;
     private ArrayList<String> tiendas;
@@ -165,6 +167,17 @@ public class PerfilActivity extends AppCompatActivity {
                     mostrarCosasLogeado();
                 }
             }
+            if (requestCode == Secondary_Activity_2) {
+                if (resultCode == RESULT_OK) {
+                    refreshAdapterProductos(idTendero);
+                }
+            }
+            if (requestCode == Secondary_Activity_3) {
+                if (resultCode == RESULT_OK) {
+                    refreshAdapterProductos(idTendero);
+                    refreshAdapterTiendas(idTendero);
+                }
+            }
         } catch (Exception ex) {
             Toast.makeText(this, ex.toString(),
                     Toast.LENGTH_SHORT).show();
@@ -207,7 +220,7 @@ public class PerfilActivity extends AppCompatActivity {
                 extras.putBoolean("boton", manipulacionBoton);
                 extras.putInt("prodId", prodId);
                 window.putExtras(extras);
-                startActivity(window);
+                startActivityForResult (window, Secondary_Activity_2);
             }
         });
 
@@ -229,8 +242,11 @@ public class PerfilActivity extends AppCompatActivity {
                 Bundle extras = new Bundle();
                 extras.putBoolean("boton", manipulacionBoton);
                 extras.putInt("tiendaId", tiendaId);
+                extras.putInt("tenderoId", idTendero);
+
                 window.putExtras(extras);
-                startActivity(window);
+
+                startActivityForResult (window, Secondary_Activity_3);
             }
         });
 
@@ -241,7 +257,7 @@ public class PerfilActivity extends AppCompatActivity {
             extras.putBoolean("boton", manipulacionBoton);
             extras.putInt("id", idTendero);
             intent.putExtras(extras);
-            startActivity(intent);
+            startActivityForResult (intent, Secondary_Activity_3);
         });
 
         btnNuevoProducto.setOnClickListener((v) -> {
@@ -251,7 +267,7 @@ public class PerfilActivity extends AppCompatActivity {
             extras.putBoolean("boton", manipulacionBoton);
             extras.putInt("id", idTendero);
             intent.putExtras(extras);
-            startActivity(intent);
+            startActivityForResult (intent, Secondary_Activity_2);
         });
 
     }
