@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grupo3</string>
+
+    <string name="editTextName">Erabiltzailea</string>
+    <string name="editTextPassword">Pasahitza</string>
+
+    <string name="labelNombre">Izena</string>
+    <string name="labelDesc">Deskripzioa</string>
+    <string name="labelPrecio">Prezio</string>
+    <string name="labelCategoria">Kategoria</string>
+    <string name="labelTienda">Denda</string>
+    <string name="labelLocalizacion">Kokapena</string>
+    <string name="labelCalle">Kalea</string>
+    <string name="labelLongitud">Longitude</string>
+    <string name="labelLatitud">Latitude</string>
+
+    <string name="txtSoloTenderos">Eremu hau gure zerbitzuarekin afiliatuta dauden ekintzaileentzat soilik erabiltzen da</string>
+
+    <string name="btnVolver">ITZULI</string>
+    <string name="btnGuardar">ALDAKETAK GORDE</string>
+    <string name="btnAgregarProducto">GEHITU PRODUKTUA</string>
+    <string name="btnAgregarTienda">GEHITU DENDA</string>
+    <string name="btnBorrarProducto">EZABATU PRODUKTUA</string>
+    <string name="btnBorrarTienda">EZABATU DENDA</string>
+    <string name="btnNuevoProducto">PRODUCTU BERRIA</string>
+    <string name="btnNuevaTienda">DENDA BERRIA</string>
+    <string name="btnBuscar">BILATU</string>
+    <string name="langName">Hizkuntza aukeratu</string>
+    <string name="btn_Login">SAIOA HASI</string>
+    <string name="btnProductos">PRODUKTUAK</string>
+    <string name="btnTiendas">DENDAK</string>
+    <string name="btnTenderos">DENDARIA</string>
+    <string name="btnLogin">SAIOA HASI</string>
+    <string name="editTextBuscarProducto">"Bilatu produktua "</string>
+    <string name="editTextBuscarTienda">Bilatu denda</string>
+</resources>

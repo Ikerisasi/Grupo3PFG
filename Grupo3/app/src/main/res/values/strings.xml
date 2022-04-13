@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Grupo3</string>
+
     <string name="editTextName">Usuario</string>
     <string name="editTextPassword">Contraseña</string>
-    <string name="btn_Login">Login</string>
-    <string name="btnProductos">PRODUCTOS</string>
-    <string name="btnTiendas">TIENDAS</string>
-    <string name="btnTenderos">TENDEROS</string>
-    <string name="btnLogin">INICIAR SESIÓN</string>
+    <string name="editTextBuscarProducto">Buscar producto</string>
+    <string name="editTextBuscarTienda">Buscar tienda</string>
+
     <string name="labelNombre">Nombre</string>
     <string name="labelDesc">Descripción</string>
     <string name="labelPrecio">Precio</string>
@@ -16,7 +15,14 @@
     <string name="labelCalle">Calle</string>
     <string name="labelLongitud">Longitud</string>
     <string name="labelLatitud">Latitud</string>
+
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
+
+    <string name="btn_Login">INICIAR SESIÓN</string>
+    <string name="btnProductos">PRODUCTOS</string>
+    <string name="btnTiendas">TIENDAS</string>
+    <string name="btnTenderos">TENDEROS</string>
+    <string name="btnLogin">INICIAR SESIÓN</string>
     <string name="btnVolver">VOLVER</string>
     <string name="btnGuardar">GUARDAR CAMBIOS</string>
     <string name="btnAgregarProducto">AÑADIR PRODUCTO</string>
@@ -26,5 +32,19 @@
     <string name="btnNuevoProducto">NUEVO PRODUCTO</string>
     <string name="btnNuevaTienda">NUEVA TIENDA</string>
     <string name="btnBuscar">BUSCAR</string>
+
+    <string name="langName">Elige el idioma</string>
+    <string-array name="languagesName">
+        <item>English</item>
+        <item>Spanish</item>
+        <item>Euskera</item>
+    </string-array>
+    <string-array name="languagesCode">
+        <item>en</item>
+        <item>es</item>
+        <item>eu</item>
+    </string-array>
+    <string name="alertOkMSG" translatable="false">Ok</string>
+    <string name="alertDenyMSG" translatable="false">Cancel</string>
 
 </resources>

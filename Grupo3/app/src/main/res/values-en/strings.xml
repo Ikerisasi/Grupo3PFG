@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grupo3</string>
+
+    <string name="editTextName">User</string>
+    <string name="editTextPassword">Password</string>
+
+    <string name="labelNombre">Name</string>
+    <string name="labelDesc">Description</string>
+    <string name="labelPrecio">Price</string>
+    <string name="labelCategoria">Category</string>
+    <string name="labelTienda">Shop</string>
+    <string name="labelLocalizacion">Localization</string>
+    <string name="labelCalle">Street</string>
+    <string name="labelLongitud">Longitude</string>
+    <string name="labelLatitud">Latitude</string>
+
+    <string name="txtSoloTenderos">This area is used exclusively for those entrepreneurs affiliated with our service</string>
+
+    <string name="btnVolver">RETURN</string>
+    <string name="btnGuardar">SAVE CHANGES</string>
+    <string name="btnAgregarProducto">ADD PRODUCT</string>
+    <string name="btnAgregarTienda">ADD SHOP</string>
+    <string name="btnBorrarProducto">DELETE PRODUCT</string>
+    <string name="btnBorrarTienda">DELETE SHOP</string>
+    <string name="btnNuevoProducto">NEW PRODUCT</string>
+    <string name="btnNuevaTienda">NEW SHOP</string>
+    <string name="btnBuscar">FIND</string>
+    <string name="langName">Choose the language</string>
+    <string name="btn_Login">LOGIN</string>
+    <string name="btnProductos">PRODUCTS</string>
+    <string name="btnTiendas">SHOPS</string>
+    <string name="btnTenderos">SHOPKEEPER</string>
+    <string name="btnLogin">LOGIN</string>
+    <string name="editTextBuscarProducto">Find product</string>
+    <string name="editTextBuscarTienda">Find shop</string>
+</resources>
