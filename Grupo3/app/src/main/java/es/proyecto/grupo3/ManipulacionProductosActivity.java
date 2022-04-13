@@ -85,8 +85,6 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
             botonGuardar.setVisibility(View.VISIBLE);
             botonBorrar.setVisibility(View.VISIBLE);
 
-            //Añadir liseners para los botones
-
             botonGuardar.setOnClickListener((v) -> {
 
                 int id = intValue;
@@ -128,8 +126,6 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
             spinTienda.setAdapter(adapterTiendas);
 
             botonAgregar.setVisibility(View.VISIBLE);
-
-            //Añadir liseners para los botones
 
             botonAgregar.setOnClickListener((v) -> {
 

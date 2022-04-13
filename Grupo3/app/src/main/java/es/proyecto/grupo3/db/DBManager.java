@@ -291,6 +291,10 @@ public class DBManager extends SQLiteOpenHelper {
     public int deleteTienda (int id) {
         int ret;
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+
+        //Comando para que funcione el ON DELETE CASCADE de la foreign key
+        sQLiteDatabase.execSQL("PRAGMA foreign_keys=ON");
+
         Tienda tienda = new Tienda();
         tienda.setId(id);
         ret = sQLiteDatabase.delete(TABLE_TIENDA, ID_TIENDA + "=?",
@@ -373,7 +377,7 @@ public class DBManager extends SQLiteOpenHelper {
     //QUery para encontrar los productos por palabra
 
     public ArrayList<String> filtroProductos(String filtro) {
-        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE UPPER(" + NOMBRE_PRODUCTO + ") LIKE '" + filtro + "%'";
+        String query = "SELECT * FROM " + TABLE_PRODUCTOS + " WHERE UPPER(" + NOMBRE_PRODUCTO + ") LIKE '%" + filtro + "%'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -489,7 +493,33 @@ public class DBManager extends SQLiteOpenHelper {
             double lat = cursor.getDouble(6);
             int idTendero = cursor.getInt(7);
 
-            String cosaParaArray =name + " | " + loc;
+            String cosaParaArray = name + " | " + loc;
+            respuesta.add(cosaParaArray);
+        }
+
+        return respuesta;
+    }
+
+    //Query para filtrar las tiendas
+
+    public ArrayList<String> filtroTiendas(String filtro) {
+        String query = "SELECT * FROM " + TABLE_TIENDA + " WHERE UPPER(" + NOMBRE_TIENDA + ") LIKE '%" + filtro + "%'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<String> respuesta = new ArrayList<String>();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String desc = cursor.getString(2);
+            String loc = cursor.getString(3);
+            String calle = cursor.getString(4);
+            double lon = cursor.getDouble(5);
+            double lat = cursor.getDouble(6);
+            int idTendero = cursor.getInt(7);
+
+            String cosaParaArray = name + " | " + loc;
             respuesta.add(cosaParaArray);
         }
 

@@ -76,8 +76,6 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
             botonGuardar.setVisibility(View.VISIBLE);
             botonBorrar.setVisibility(View.VISIBLE);
 
-            //Añadir liseners para los botones
-
             botonGuardar.setOnClickListener((v) -> {
 
                 String nombre = editNombre.getText().toString();
@@ -108,9 +106,8 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
             });
 
         } else{
+            idTendero = mIntent.getIntExtra("id", 0);
             botonAgregar.setVisibility(View.VISIBLE);
-
-            //Añadir liseners para los botones
 
             botonAgregar.setOnClickListener((v) -> {
 

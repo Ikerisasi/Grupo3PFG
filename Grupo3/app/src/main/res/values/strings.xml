@@ -15,8 +15,13 @@
     <string name="labelCalle">Calle</string>
     <string name="labelLongitud">Longitud</string>
     <string name="labelLatitud">Latitud</string>
+    <string name="labelTitulo" translatable="false">¡LO QUIERO!</string>
+    <string name="labelIdioma" translatable="false">Selecciona un idioma</string>
 
     <string name="txtSoloTenderos">Esta área se utiliza exclusivamente para aquellos empresarios afiliados con nuestro servicio</string>
+    <string name="txtSloganEs" translatable="false">Bienvenido al escaparate más molón en la palma de tu mano</string>
+    <string name="txtSloganEn" translatable="false">Welcome to the coolest storefront in the palm of your hand</string>
+    <string name="txtSloganEu" translatable="false">Ongi etorri esku-ahurrean dagoen erakusleihorik ederrenera</string>
 
     <string name="btn_Login">INICIAR SESIÓN</string>
     <string name="btnProductos">PRODUCTOS</string>
@@ -36,7 +41,7 @@
     <string name="langName">Elige el idioma</string>
     <string-array name="languagesName">
         <item>English</item>
-        <item>Spanish</item>
+        <item>Castellano</item>
         <item>Euskera</item>
     </string-array>
     <string-array name="languagesCode">

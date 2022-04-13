@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class TiendasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tiendas);
 
+        EditText filtroTien = findViewById(R.id.editFiltroTiendas);
+        Button buscar = findViewById(R.id.btnFiltroTiendas);
+        Button btnProductosTienda = findViewById(R.id.btnProductosTienda);
+        Button btnTenderosTienda = findViewById(R.id.btnTenderosTienda);
+
         Intent mIntent = getIntent();
         Bundle extrasGet = mIntent.getExtras();
         logeado = extrasGet.getBoolean("logeado");
@@ -35,9 +41,6 @@ public class TiendasActivity extends AppCompatActivity {
             idTendero = extrasGet.getInt("id");
             nombreTendero = extrasGet.getString("nombre");
         }
-
-        Button btnProductosTienda = findViewById(R.id.btnProductosTienda);
-        Button btnTenderosTienda = findViewById(R.id.btnTenderosTienda);
 
         btnProductosTienda.setOnClickListener((v) -> {
             Intent intent = new Intent(this, ProductosActivity.class);
@@ -64,6 +67,15 @@ public class TiendasActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        buscar.setOnClickListener( (v) -> {
+            String palabraFiltro = filtroTien.getText().toString().toUpperCase();
+
+            tiendas = dbHelper.filtroTiendas(palabraFiltro);
+
+            refreshAdapter();
+        } );
+
         CreateAdapter();
 
         ListView listView = (ListView) findViewById(R.id.ListaTiendas);
@@ -91,12 +103,6 @@ public class TiendasActivity extends AppCompatActivity {
 
     public void refreshAdapter() {
         itemsAdapter.clear();
-
-        //declaramos nuevamente la variable a null, en caso de no hacer eso entra en un conflicto duplicando valores inexistentes
-        tiendas = null;
-        tiendas = new ArrayList<String>();
-
-        tiendas = dbHelper.selectTiendas();
 
         itemsAdapter.addAll(tiendas);
 

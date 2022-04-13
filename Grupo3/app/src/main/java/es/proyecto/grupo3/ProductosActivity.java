@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,14 @@ public class ProductosActivity extends AppCompatActivity {
             finish();
         } );
 
+        buscar.setOnClickListener( (v) -> {
+            String palabraFiltro = filtroProd.getText().toString().toUpperCase();
+
+            productos = dbHelper.filtroProductos(palabraFiltro);
+
+            refreshAdapter();
+        } );
+
         CreateAdapter();
 
         ListView listView = (ListView) findViewById(R.id.ListProductos);
@@ -82,16 +91,6 @@ public class ProductosActivity extends AppCompatActivity {
                 startActivity(window);
             }
         });
-
-        buscar.setOnClickListener( (v) -> {
-
-            String palabraFiltro = filtroProd.getText().toString().toUpperCase();
-
-            productos = dbHelper.filtroProductos(palabraFiltro);
-
-            refreshAdapter();
-        } );
-
     }
 
     private void CreateAdapter() {
@@ -104,12 +103,6 @@ public class ProductosActivity extends AppCompatActivity {
 
     public void refreshAdapter(){
         itemsAdapter.clear();
-
-        //declaramos nuevamente la variable a null, en caso de no hacer eso entra en un conflicto duplicando valores inexistentes
-        productos = null;
-        productos = new ArrayList<String>();
-
-        productos = dbHelper.selectProductos();
 
         itemsAdapter.addAll(productos);
 
