@@ -22,7 +22,7 @@ public class AnimationInicial extends AppCompatActivity {
         setContentView(R.layout.activity_animation_inicial);
 
         lottieAnimationView  = findViewById(R.id.imageView);
-        animacion(lottieAnimationView, R.raw.loading);
+        animacion(lottieAnimationView, R.raw.add);
 
         TimerTask tarea = new TimerTask() {
             @Override
