@@ -8,20 +8,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import es.proyecto.grupo3.db.DBManager;
 import es.proyecto.grupo3.modelo.Tendero;
 
 public class LoginActivity extends AppCompatActivity {
 
     private DBManager dbHelper = new DBManager(LoginActivity.this);
+    private TextInputEditText editName;
+    private TextInputEditText editPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText editName =  findViewById(R.id.editTextName);
-        EditText editPassword = findViewById(R.id.editTextPassword);
+         editName =  findViewById(R.id.editTextName);
+         editPassword = findViewById(R.id.editTextPassword);
         Button btn_Login = findViewById(R.id.btn_Login);
         Button btn_Volver = findViewById(R.id.BtnAtras);
 

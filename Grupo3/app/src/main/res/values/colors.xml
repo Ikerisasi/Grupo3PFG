@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#F2E608</color>
     <color name="red">#F23608</color>
+    <color name="green">#14F208</color>
+    <color name="turquesa">#08F2AD</color>
+    <color name="orange">#F5870C</color>
+    <color name="rosa">#F50CED</color>
+    <color name="morado">#850CF5</color>
 </resources>

@@ -34,7 +34,7 @@ public class AnimationInicial extends AppCompatActivity {
             }
         };
         Timer tiempo = new Timer();
-        tiempo.schedule(tarea,3600);
+        tiempo.schedule(tarea,6000);
     }
 
     public void animacion( LottieAnimationView imageView, Integer animation ){
