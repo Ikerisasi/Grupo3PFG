@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/custom_background"
     tools:context=".LoginActivity">
 
     <Button
@@ -56,17 +55,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24"
+        app:layout_constraintVertical_bias="0.462"
         app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextName"
-            android:textSize="24dp"
-            android:fontFamily="@font/chewy"
-            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:fontFamily="@font/chewy"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,17 +84,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473"
+        app:layout_constraintVertical_bias="0.645"
         app:startIconDrawable="@drawable/ic_lock">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
             android:fontFamily="@font/chewy"
-            android:textColor="@color/white"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="232dp"
+        android:layout_height="180dp"
+        android:src="@drawable/imagenlogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        tools:src="@drawable/imagenlogin"
+        tools:srcCompat="@drawable/imagenlogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
