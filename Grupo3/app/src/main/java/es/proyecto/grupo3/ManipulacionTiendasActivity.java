@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -82,18 +83,41 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
                 String descripcion = editDesc.getText().toString();
                 String localizacion = editLoc.getText().toString();
                 String calle = editCalle.getText().toString();
-                Double longitud = Double.parseDouble(editLong.getText().toString());
-                Double latitud = Double.parseDouble(editLat.getText().toString());
+                Double longitud = null;
+                Double latitud = null;
 
-                Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+                if (editLong.getText().toString().isEmpty()){
+                    longitud = 0.0;
+                }else {
+                    longitud = Double.parseDouble(editLong.getText().toString());
+                }
 
-                Boolean update = dbHelper.updateTienda(tienda);
+                if (editLat.getText().toString().isEmpty()){
+                    latitud = 0.0;
+                }else {
+                    latitud = Double.parseDouble(editLat.getText().toString());
+                }
 
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
+                if(nombre.isEmpty() || descripcion.isEmpty() || localizacion.isEmpty() || calle.isEmpty()){
 
-                finish();
+                    Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_LONG);
+                    toast.show();
+
+                } else{
+
+                    Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+
+                    Boolean update = dbHelper.updateTienda(tienda);
+
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+
+                }
             });
+
+
 
             botonBorrar.setOnClickListener((v) -> {
 
@@ -115,17 +139,39 @@ public class ManipulacionTiendasActivity extends AppCompatActivity {
                 String descripcion = editDesc.getText().toString();
                 String localizacion = editLoc.getText().toString();
                 String calle = editCalle.getText().toString();
-                Double longitud = Double.parseDouble(editLong.getText().toString());
-                Double latitud = Double.parseDouble(editLat.getText().toString());
+                Double longitud = null;
+                Double latitud = null;
 
-                Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+                if (editLong.getText().toString().isEmpty()){
+                    longitud = 0.0;
+                }else {
+                    longitud = Double.parseDouble(editLong.getText().toString());
+                }
 
-                dbHelper.insertTienda(tienda);
+                if (editLat.getText().toString().isEmpty()){
+                    latitud = 0.0;
+                }else {
+                    latitud = Double.parseDouble(editLat.getText().toString());
+                }
 
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
+                if(nombre.isEmpty() || descripcion.isEmpty() || localizacion.isEmpty() || calle.isEmpty()){
 
-                finish();
+                    Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_LONG);
+                    toast.show();
+
+                } else{
+
+                    Tienda tienda = new Tienda(idTienda, nombre, descripcion, localizacion, calle, longitud, latitud, idTendero);
+
+                    dbHelper.insertTienda(tienda);
+
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+
+                }
+
             });
         }
 

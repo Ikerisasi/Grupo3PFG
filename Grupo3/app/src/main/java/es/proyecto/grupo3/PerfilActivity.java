@@ -199,7 +199,7 @@ public class PerfilActivity extends AppCompatActivity {
         productosLayout.setVisibility(View.VISIBLE);
         productosList.setVisibility(View.VISIBLE);
 
-        textTendero.setText(nombreTendero);
+        textTendero.setText(nombreTendero.toUpperCase());
 
         CreateAdapterProductos(idTendero);
         productosList.setAdapter(productosAdapter);
@@ -214,6 +214,7 @@ public class PerfilActivity extends AppCompatActivity {
 //                startActivity(window);
 
                 Intent window = new Intent(PerfilActivity.this, ManipulacionProductosActivity.class);
+                manipulacionBoton = false;
                 String producto = productos.get(i);
                 int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
                 Bundle extras = new Bundle();
@@ -237,6 +238,7 @@ public class PerfilActivity extends AppCompatActivity {
 //                startActivity(window);
 
                 Intent window = new Intent(PerfilActivity.this, ManipulacionTiendasActivity.class);
+                manipulacionBoton = false;
                 String tienda = tiendas.get(i);
                 int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
                 Bundle extras = new Bundle();

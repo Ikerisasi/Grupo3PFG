@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -51,7 +52,7 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         Bundle extrasGet = mIntent.getExtras();
         manipulacionBoton = extrasGet.getBoolean("boton");
-        if (manipulacionBoton == false){
+        if (manipulacionBoton == false) {
             intValue = mIntent.getIntExtra("prodId", 0);
 
             tiendas = dbHelper.selectTiendasProducto2(intValue);
@@ -90,19 +91,34 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
                 int id = intValue;
                 String nombre = textNombre.getText().toString();
                 String descripcion = textDesc.getText().toString();
-                Double precio = Double.parseDouble(textPrecio.getText().toString());
+                Double precio = null;
                 int tienda = dbHelper.selectIdTiendas(spinTienda.getSelectedItem().toString());
                 int categoria = spinCategoria.getSelectedItemPosition() + 1;
 
-                Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+                if (textPrecio.getText().toString().isEmpty()) {
+                    precio = 0.0;
+                } else {
+                    precio = Double.parseDouble(textPrecio.getText().toString());
+                }
 
-                Boolean update = dbHelper.updateProducto(prod);
+                if (nombre.isEmpty() || descripcion.isEmpty()) {
 
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
+                    Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_LONG);
+                    toast.show();
 
-                finish();
+                } else {
+                    Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+
+                    Boolean update = dbHelper.updateProducto(prod);
+
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
             });
+
+
 
             botonBorrar.setOnClickListener((v) -> {
                 dbHelper.deleteProducto(intValue);
@@ -113,7 +129,7 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
                 finish();
             });
 
-        } else{
+        } else {
 
             intValue = mIntent.getIntExtra("id", 0);
 
@@ -132,22 +148,34 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
                 int id = 999999;
                 String nombre = textNombre.getText().toString();
                 String descripcion = textDesc.getText().toString();
-                Double precio = Double.parseDouble(textPrecio.getText().toString());
+                Double precio = null;
                 int tienda = dbHelper.selectIdTiendas(spinTienda.getSelectedItem().toString());
                 int categoria = spinCategoria.getSelectedItemPosition() + 1;
 
-                Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+                if (textPrecio.getText().toString().isEmpty()) {
+                    precio = 0.0;
+                } else {
+                    precio = Double.parseDouble(textPrecio.getText().toString());
+                }
 
-                dbHelper.insertProducto(prod);
+                if (nombre.isEmpty() || descripcion.isEmpty()) {
 
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
+                    Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_LONG);
+                    toast.show();
 
-                finish();
+                } else {
+                    Producto prod = new Producto(id, nombre, descripcion, precio, tienda, categoria);
+
+                    dbHelper.insertProducto(prod);
+
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+
             });
         }
-
-
 
         categorias = dbHelper.selectCategorias();
 
@@ -156,7 +184,6 @@ public class ManipulacionProductosActivity extends AppCompatActivity {
 
         adapterCategorias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCategoria.setAdapter(adapterCategorias);
-
 
     }
 }

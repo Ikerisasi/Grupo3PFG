@@ -101,7 +101,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57">
+        app:layout_constraintVertical_bias="0.6">
 
         <ListView
             android:id="@+id/ListTiendasTendero"
@@ -122,7 +122,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57">
+        app:layout_constraintVertical_bias="0.6">
 
         <ListView
             android:id="@+id/ListProductosTendero"
@@ -137,8 +137,8 @@
         android:layout_width="230dp"
         android:layout_height="67dp"
         android:cursorVisible="false"
-        android:gravity="center"
         android:fontFamily="sans-serif"
+        android:gravity="center"
         android:text="TENDERO"
         android:textSize="50sp"
         android:visibility="invisible"
@@ -167,32 +167,32 @@
         android:id="@+id/BtnNuevaTienda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/customize_button1"
         android:text="@string/btnNuevaTienda"
         android:textColor="@color/white"
         android:visibility="invisible"
-        android:background="@drawable/customize_button1"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.147" />
 
     <Button
         android:id="@+id/BtnNuevoProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/customize_button1"
         android:text="@string/btnNuevoProducto"
         android:textColor="@color/white"
         android:visibility="invisible"
-        android:background="@drawable/customize_button1"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.147" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
