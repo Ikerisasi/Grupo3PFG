@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:text="@string/btnGuardar"
         android:visibility="invisible"
+        android:background="@drawable/custombutton5"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.004"
@@ -25,6 +27,8 @@
         android:layout_height="wrap_content"
         android:text="@string/btnBorrarTienda"
         android:visibility="invisible"
+        android:background="@drawable/customize_button1"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.949"
@@ -38,6 +42,8 @@
         android:layout_height="wrap_content"
         android:text="@string/btnAgregarTienda"
         android:visibility="invisible"
+        android:background="@drawable/custombutton6"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.451"
@@ -63,75 +69,105 @@
 
     <TextView
         android:id="@+id/lblLocalizacionMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
         android:text="@string/labelLocalizacion"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.231" />
 
     <TextView
         android:id="@+id/lblDescMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="53dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
         android:text="@string/labelDesc"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.151" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/lblNombreMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="42dp"
         android:text="@string/labelNombre"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/aclonica"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
         android:id="@+id/lblCalleMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
         android:text="@string/labelCalle"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.314" />
 
     <TextView
         android:id="@+id/lblLongMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="44dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
         android:text="@string/labelLongitud"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.388" />
 
     <TextView
         android:id="@+id/lblLatitudMani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
         android:text="@string/labelLatitud"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.473" />
 
     <EditText
         android:id="@+id/editNombreTienda"
@@ -145,7 +181,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.052"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editDescTienda"
@@ -159,7 +196,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintVertical_bias="0.135"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editLocTienda"
@@ -173,7 +211,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
+        app:layout_constraintVertical_bias="0.224"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editCalleTienda"
@@ -187,7 +226,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.304"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editLongitudTienda"
@@ -201,7 +241,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintVertical_bias="0.385"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editLatitudTienda"
@@ -215,6 +256,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472" />
+        app:layout_constraintVertical_bias="0.472"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,9 +14,9 @@
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.852"
@@ -26,25 +26,25 @@
 
     <TextView
         android:id="@+id/TxtCalle"
-        android:layout_width="170dp"
-        android:layout_height="51dp"
+        android:layout_width="176dp"
+        android:layout_height="73dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintVertical_bias="0.395" />
 
     <TextView
         android:id="@+id/LblLocalizacion"
-        android:layout_width="150dp"
-        android:layout_height="47dp"
+        android:layout_width="152dp"
+        android:layout_height="63dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="@string/labelLocalizacion"
@@ -52,48 +52,48 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
-
-    <TextView
-        android:id="@+id/LblCalle"
-        android:layout_width="127dp"
-        android:layout_height="47dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center"
-        android:text="@string/labelCalle"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintVertical_bias="0.269" />
+
+    <TextView
+        android:id="@+id/LblCalle"
+        android:layout_width="143dp"
+        android:layout_height="65dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="@string/labelCalle"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/TxtLocalizacion"
-        android:layout_width="166dp"
-        android:layout_height="56dp"
+        android:layout_width="168dp"
+        android:layout_height="64dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.844"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
         android:id="@+id/lblDesc"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
+        android:layout_width="159dp"
+        android:layout_height="68dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="@string/labelDesc"
@@ -101,27 +101,27 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.143" />
 
     <TextView
         android:id="@+id/txtDescTienda"
-        android:layout_width="151dp"
-        android:layout_height="52dp"
+        android:layout_width="156dp"
+        android:layout_height="73dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.136" />
 
     <TextView
         android:id="@+id/lblNombre"
@@ -141,7 +141,7 @@
 
     <LinearLayout
         android:layout_width="410dp"
-        android:layout_height="370dp"
+        android:layout_height="327dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
