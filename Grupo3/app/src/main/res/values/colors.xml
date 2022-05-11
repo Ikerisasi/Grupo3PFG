@@ -15,4 +15,7 @@
     <color name="rosa">#F50CED</color>
     <color name="morado">#850CF5</color>
     <color name="rosaClaro">#F253BD</color>
+    <color name="gris">#C5C5C5</color>
+    <color name="granate">#850000</color>
+    <color name="verdeoscuro">#013E13</color>
 </resources>

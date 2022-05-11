@@ -146,9 +146,9 @@
         android:layout_height="67dp"
         android:cursorVisible="false"
         android:fontFamily="@font/alfa_slab_one"
-        android:textColor="@color/black"
         android:gravity="center"
         android:text="TENDERO"
+        android:textColor="@color/black"
         android:textSize="50sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -183,10 +183,10 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <Button
         android:id="@+id/BtnNuevoProducto"
@@ -199,9 +199,9 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/btnTiendasTendero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.19" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
