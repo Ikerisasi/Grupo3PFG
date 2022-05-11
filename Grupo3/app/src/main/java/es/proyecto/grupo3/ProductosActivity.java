@@ -85,9 +85,10 @@ public class ProductosActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int idProducto = i + 1;
+                String producto = productos.get(i);
+                int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
                 Intent window = new Intent(ProductosActivity.this, DetallesProductoActivity.class);
-                window.putExtra("idProducto", idProducto);
+                window.putExtra("idProducto", prodId);
                 startActivity(window);
             }
         });
