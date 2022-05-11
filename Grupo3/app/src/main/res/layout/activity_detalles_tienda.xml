@@ -36,7 +36,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.395" />
@@ -85,10 +85,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintHorizontal_bias="0.839"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/lblDesc"
@@ -108,8 +108,8 @@
 
     <TextView
         android:id="@+id/txtDescTienda"
-        android:layout_width="156dp"
-        android:layout_height="73dp"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="TextView"

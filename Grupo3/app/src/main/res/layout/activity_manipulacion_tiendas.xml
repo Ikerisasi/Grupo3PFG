@@ -96,32 +96,32 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
         android:id="@+id/lblNombreMani"
         android:layout_width="106dp"
         android:layout_height="42dp"
-        android:text="@string/labelNombre"
+        android:fontFamily="@font/aclonica"
         android:gravity="center"
+        android:text="@string/labelNombre"
         android:textColor="@color/black"
         android:textSize="17dp"
         android:textStyle="bold"
-        android:fontFamily="@font/aclonica"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/lblCalleMani"
-        android:layout_width="90dp"
-        android:layout_height="38dp"
+        android:layout_width="116dp"
+        android:layout_height="47dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
         android:text="@string/labelCalle"
