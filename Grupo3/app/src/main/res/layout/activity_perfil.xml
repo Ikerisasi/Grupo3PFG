@@ -142,8 +142,8 @@
 
     <TextView
         android:id="@+id/TxtTendero"
-        android:layout_width="230dp"
-        android:layout_height="67dp"
+        android:layout_width="306dp"
+        android:layout_height="76dp"
         android:cursorVisible="false"
         android:fontFamily="@font/alfa_slab_one"
         android:gravity="center"
