@@ -50,6 +50,7 @@
             android:name=".ProductosActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".AnimationInicial"
             android:exported="true">
