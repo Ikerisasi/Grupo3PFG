@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import es.proyecto.grupo3.db.DBManager;
 
@@ -216,7 +217,10 @@ public class PerfilActivity extends AppCompatActivity {
                 Intent window = new Intent(PerfilActivity.this, ManipulacionProductosActivity.class);
                 manipulacionBoton = false;
                 String producto = productos.get(i);
-                int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+                //int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+                String separador = Pattern.quote("|");
+                String[] parts = producto.split(separador);
+                int prodId = Integer.parseInt(parts[0]);
                 Bundle extras = new Bundle();
                 extras.putBoolean("boton", manipulacionBoton);
                 extras.putInt("prodId", prodId);
@@ -240,7 +244,10 @@ public class PerfilActivity extends AppCompatActivity {
                 Intent window = new Intent(PerfilActivity.this, ManipulacionTiendasActivity.class);
                 manipulacionBoton = false;
                 String tienda = tiendas.get(i);
-                int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+                //int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+                String separador = Pattern.quote("|");
+                String[] parts = tienda.split(separador);
+                int tiendaId = Integer.parseInt(parts[0]);
                 Bundle extras = new Bundle();
                 extras.putBoolean("boton", manipulacionBoton);
                 extras.putInt("tiendaId", tiendaId);

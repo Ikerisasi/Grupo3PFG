@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import es.proyecto.grupo3.db.DBManager;
 
@@ -86,7 +87,10 @@ public class ProductosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String producto = productos.get(i);
-                int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+//                int prodId = Integer.parseInt(String.valueOf(producto.charAt(0)));
+                String separador = Pattern.quote("|");
+                String[] parts = producto.split(separador);
+                int prodId = Integer.parseInt(parts[0]);
                 Intent window = new Intent(ProductosActivity.this, DetallesProductoActivity.class);
                 window.putExtra("idProducto", prodId);
                 startActivity(window);

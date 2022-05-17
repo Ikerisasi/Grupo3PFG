@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import es.proyecto.grupo3.db.DBManager;
 
@@ -85,7 +86,10 @@ public class TiendasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String tienda = tiendas.get(i);
-                int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+                //int tiendaId = Integer.parseInt(String.valueOf(tienda.charAt(0)));
+                String separador = Pattern.quote("|");
+                String[] parts = tienda.split(separador);
+                int tiendaId = Integer.parseInt(parts[0]);
                 Intent window = new Intent(TiendasActivity.this, DetallesTiendaActivity.class);
                 window.putExtra("idTienda", tiendaId);
                 startActivity(window);

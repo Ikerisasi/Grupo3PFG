@@ -508,7 +508,7 @@ public class DBManager extends SQLiteOpenHelper {
             int idTienda = cursor.getInt(4);
             int idCategoria = cursor.getInt(5);
 
-            String cosaParaArray = id + " | " + name + " | " + desc + " | " + coste;
+            String cosaParaArray = id + "| " + name + " | " + desc + " | " + coste;
             respuesta.add(cosaParaArray);
         }
 
@@ -532,7 +532,7 @@ public class DBManager extends SQLiteOpenHelper {
             int idTienda = cursor.getInt(4);
             int idCategoria = cursor.getInt(5);
 
-            String cosaParaArray = id + " | " + name + " | " + desc + " | " + coste;
+            String cosaParaArray = id + "| " + name + " | " + desc + " | " + coste;
             respuesta.add(cosaParaArray);
         }
 
@@ -634,7 +634,7 @@ public class DBManager extends SQLiteOpenHelper {
             double lat = cursor.getDouble(6);
             int idTendero = cursor.getInt(7);
 
-            String cosaParaArray = id + " | " + name + " | " + loc;
+            String cosaParaArray = id + "| " + name + " | " + loc;
             respuesta.add(cosaParaArray);
         }
 
@@ -660,7 +660,7 @@ public class DBManager extends SQLiteOpenHelper {
             double lat = cursor.getDouble(6);
             int idTendero = cursor.getInt(7);
 
-            String cosaParaArray = id + " | " + name + " | " + loc;
+            String cosaParaArray = id + "| " + name + " | " + loc;
             respuesta.add(cosaParaArray);
         }
 
@@ -757,7 +757,7 @@ public class DBManager extends SQLiteOpenHelper {
             int idTienda = cursor.getInt(4);
             int idCategoria = cursor.getInt(5);
 
-            String cosaParaArray = id + " | " + name;
+            String cosaParaArray = id + "| " + name;
             respuesta.add(cosaParaArray);
         }
 
@@ -782,7 +782,7 @@ public class DBManager extends SQLiteOpenHelper {
             double lat = cursor.getDouble(6);
             int idTendero = cursor.getInt(7);
 
-            String cosaParaArray = id + " | " + name;
+            String cosaParaArray = id + "| " + name;
             respuesta.add(cosaParaArray);
         }
 
